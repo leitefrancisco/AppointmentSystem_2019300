@@ -18,6 +18,33 @@ public class Controller implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
+        if(e.getActionCommand().equals("login")){
+            
+            String un = view.getUName();
+            String up = view.getUPassword();
+            
+            User user = new User(un, up);
+            
+            boolean result = model.login(user);
+            
+            if(result){
+                System.out.println("you are in");
+                
+            }
+            else{
+                System.out.println("you are out");
+            
+            }
+           
+        
+        }
+        
+            
+            
+            
+            
+            
+            
         
         
         
