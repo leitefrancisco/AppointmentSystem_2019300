@@ -12,17 +12,17 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class View extends JFrame {
+public class LoginScreen extends JFrame {
     
     Controller controller;
     private JTextField uName;
     private JTextField uPassword;
     
-    public View(Controller controller){
+    public LoginScreen(Controller controller){
         
         this.controller =  controller;
         frameSetter();
-        loginScreen();
+        showLoginScreen();
         
         validation();
     }
@@ -30,27 +30,26 @@ public class View extends JFrame {
     private void frameSetter(){
         this.setVisible(true);
         this.setSize(800,500);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
         this.setTitle("Barbershop");
-        
+        BorderLayout frameLayout = new BorderLayout();
+        this.setLayout(frameLayout);
+        //head
+        JPanel topPanel = new JPanel();
+        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.add(topPanel, BorderLayout.PAGE_START);
+        JLabel barberShop = new JLabel("Barber Shop") ;
+        topPanel.add(barberShop);   
     }
-    
     
     private void validation(){
         this.validate();
         this.repaint();
     }
     // Creates the Login Panel with the "New User" Option
-    private void loginScreen(){
-        BorderLayout frameLayout = new BorderLayout();
-        this.setLayout(frameLayout);
-        //head
-        JPanel topPanel = new JPanel();
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    private void showLoginScreen(){
         
-        this.add(topPanel, BorderLayout.PAGE_START);
-        
-        JLabel barberShop = new JLabel("Barber Shop") ;
-        topPanel.add(barberShop);
         //Makes left and right Panel
         JPanel mainCenterPanel = new JPanel();
         GridLayout mainCenterPanelLayout = new GridLayout(1,2);
@@ -109,7 +108,7 @@ public class View extends JFrame {
         
         centerLogin.add(item2);
         //New user Panel (Right panel)
-
+        
         JPanel newUserPanel = new JPanel();
         mainCenterPanel.add(newUserPanel);
         GridLayout nUPanelLayout = new GridLayout(3,1);
@@ -117,12 +116,12 @@ public class View extends JFrame {
         //Blank Panel to Give space
         JPanel blankPanel = new JPanel();
         newUserPanel.add(blankPanel);
-
+        
         JPanel centerNewUser = new JPanel();
         GridLayout cnUserLayout = new GridLayout(3,1);
         centerNewUser.setLayout(cnUserLayout);
         newUserPanel.add(centerNewUser);
-
+        
         JPanel newUserMsg = new JPanel();
         FlowLayout nuMsgLayout = new FlowLayout();
         JLabel messageNewUser = new JLabel("Don't have an account? Create one here!");
@@ -133,15 +132,21 @@ public class View extends JFrame {
         
         JPanel newUserButtonPanel = new JPanel();
         centerNewUser.add(newUserButtonPanel);
-        JButton nUserButton = new JButton("New User!");
-        newUserButtonPanel.add(nUserButton);
-   
+        JButton nUserCustomerButton = new JButton("New User - Curstomer");
+        nUserCustomerButton.addActionListener(controller);
+        nUserCustomerButton.setActionCommand("newUserCustomer");
+        newUserButtonPanel.add(nUserCustomerButton);
+        
+        JButton nUserBarberButton = new JButton("New User - Barber");
+        nUserBarberButton.addActionListener(controller);
+        nUserBarberButton.setActionCommand("newUserBarber");
+        newUserButtonPanel.add(nUserBarberButton);
     }
     
     
     
     public String getUName(){
-        return uName.getText();  
+        return uName.getText();
     }
     
     public String getUPassword(){

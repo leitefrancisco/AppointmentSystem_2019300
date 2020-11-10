@@ -4,12 +4,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controller implements ActionListener {
-    View view;
+    LoginScreen loginScreen;
+    RegistrationScreenCustomer registrationScreenCustomer;
+    RegistrationScreenBarber registrationScreenBarber;
     Model model;
     
     public Controller(){
-        
-        this.view = new View(this);
+        //this.registrationScreenCustomer = new RegistrationScreenCustomer(this);
+        this.registrationScreenBarber = new RegistrationScreenBarber(this);
+        this.loginScreen = new LoginScreen(this);
         this.model = new Model();  
     }
     
@@ -20,8 +23,8 @@ public class Controller implements ActionListener {
         
         if(e.getActionCommand().equals("login")){
             
-            String un = view.getUName();
-            String up = view.getUPassword();
+            String un = loginScreen.getUName();
+            String up = loginScreen.getUPassword();
             
             User user = new User(un, up);
             
@@ -34,11 +37,11 @@ public class Controller implements ActionListener {
             else{
                 System.out.println("you are out");
             
-            }
-           
-        
+            }    
         }
-        
+        if(e.getActionCommand().equals("newUser")){
+            
+        }
             
             
             
