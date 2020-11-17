@@ -12,6 +12,9 @@ package appointmentsystem_2019300;
 public class User {
     
     private String un;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String pw;
     
     public User(String un, String pw){

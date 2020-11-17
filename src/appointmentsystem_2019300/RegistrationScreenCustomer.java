@@ -20,8 +20,6 @@ public class RegistrationScreenCustomer extends JFrame {
     JPasswordField passwordCustomer;
     JPasswordField confPasswordCustomer;
     
-    
-    
     public RegistrationScreenCustomer(Controller controller){
         
         this.controller =  controller;

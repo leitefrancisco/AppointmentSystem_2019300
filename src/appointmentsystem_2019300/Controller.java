@@ -4,20 +4,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Controller implements ActionListener {
-    LoginScreen loginScreen;
-    RegistrationScreenCustomer registrationScreenCustomer;
-    RegistrationScreenBarber registrationScreenBarber;
+    //RegistrationScreenCustomer registrationScreenCustomer;
+    
     Model model;
+    LoginScreen loginScreen;
+    RegistrationScreen registrationScreenBarber;
+    BarberAdminScreen barberAdminScreen;
+    BarberLocationsScreen barberLocationsScreen;
+    BarberAppointmentScreen appointmentScreenBarber;
+    BarberComplaintsScreen complaintsBarberScreen;
+    CustomerAdminScreen customerAdminScreen;
     
     public Controller(){
         //this.registrationScreenCustomer = new RegistrationScreenCustomer(this);
-        this.registrationScreenBarber = new RegistrationScreenBarber(this);
-        this.loginScreen = new LoginScreen(this);
-        this.model = new Model();  
+//        this.model = new Model();
+//        this.loginScreen = new LoginScreen(this);
+//        this.registrationScreenBarber = new RegistrationScreenBarber(this);
+//        this.barberAdminScreen = new BarberAdminScreen(this);
+//        this.barberLocationsScreen = new BarberLocationsScreen(this);
+//        this.appointmentScreenBarber = new AppointmentScreenBarber(this);
+//        this.complaintsBarberScreen = new ComplaintsBarberScreen(this);
+        this.customerAdminScreen = new CustomerAdminScreen(this);
     }
     
-    
-
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -36,23 +45,14 @@ public class Controller implements ActionListener {
             }
             else{
                 System.out.println("you are out");
-            
-            }    
+            }
         }
         if(e.getActionCommand().equals("newUser")){
             
         }
-            
-            
-            
-            
-            
-            
-        
-        
         
         
     }
     
-   
+    
 }

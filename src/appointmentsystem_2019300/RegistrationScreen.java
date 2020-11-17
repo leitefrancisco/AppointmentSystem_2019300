@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class RegistrationScreenBarber extends JFrame {
+public class RegistrationScreen extends JFrame {
     Controller controller;
     JTextField firstNameCustomer;
     JTextField lastNameCustomer;
@@ -23,7 +23,7 @@ public class RegistrationScreenBarber extends JFrame {
     
     
     
-    public RegistrationScreenBarber(Controller controller){
+    public RegistrationScreen(Controller controller){
         
         this.controller =  controller;
         frameSetter();
@@ -130,8 +130,7 @@ public class RegistrationScreenBarber extends JFrame {
         ConfirmRegButtonBarber.addActionListener(controller);
         ConfirmRegButtonBarber.setActionCommand("ConfirmRegBarber");
         
-        
-        
+
         bottomButtonsPanel.add(backButton);
         bottomButtonsPanel.add(ConfirmRegButtonBarber);
         bottomButtonsPanel.add(ConfirmRegButtonCustomer);
