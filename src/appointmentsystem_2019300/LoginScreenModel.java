@@ -26,7 +26,7 @@ public class LoginScreenModel {
             ResultSet rs = db.executeQuery(query);
             // Loop through the result set
             if (rs.next()) {
-                validLogin = true;
+                validLogin = true; 
             }
            db.close();
         } catch (SQLException se) {
@@ -45,6 +45,38 @@ public class LoginScreenModel {
         }
         
         return validLogin;
+    }
+    
+    public int userType(){
+       
+        int userType = 0;
+        
+        try {
+            Database db = new Database();
+           
+            String query = "select * FROM t_user WHERE email = '" + email + "' AND password = '"+ password +"'";
+            ResultSet rs = db.executeQuery(query);
+            rs.next();
+            if (rs.getString("user_type").equals("c")) {
+                userType = 1;    
+            }
+           db.close();
+        } catch (SQLException se) {
+            System.out.println("SQL Exception:");
+            
+            // Loop through the SQL Exceptions
+            while (se != null) {
+                System.out.println("State  : " + se.getSQLState());
+                System.out.println("Message: " + se.getMessage());
+                System.out.println("Error  : " + se.getErrorCode());
+                
+                se = se.getNextException();
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        return userType;
     }
     
     

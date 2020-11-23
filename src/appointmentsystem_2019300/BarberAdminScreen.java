@@ -14,9 +14,9 @@ import javax.swing.JPanel;
  */
 public class BarberAdminScreen extends JFrame{
     
-    LoginScreenController controller;
+    BarberAdminScreenController BarberAdminScreenController;
     
-    public BarberAdminScreen(LoginScreenController Controller){
+    public BarberAdminScreen(BarberAdminScreenController BarberAdminScreenController){
         frameSetter();
         showBarberAdminScreen();
         validation();

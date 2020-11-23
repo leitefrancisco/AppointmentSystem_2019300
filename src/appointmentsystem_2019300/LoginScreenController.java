@@ -2,20 +2,21 @@ package appointmentsystem_2019300;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class LoginScreenController implements ActionListener {
-
+    
     
 //    LoginScreenModel loginScreenModel;
     LoginScreen loginScreen;
     
- 
+    
     
     public LoginScreenController(){
         
 //        this.loginScreenModel = new LoginScreenModel();
         this.loginScreen = new LoginScreen(this);
-
+        
     }
     
     @Override
@@ -26,14 +27,25 @@ public class LoginScreenController implements ActionListener {
             boolean result = model.login();
             
             if(result){
-                System.out.println("you are in");
+                int type = model.userType();
+                if (type == 1){
+                    new CustomerAdminScreenController();
+                    
+                }
+                else{
+                    loginScreen.dispose();
+                    new BarberAdminScreenController();
+                }
+                
+                
+                
                 
             }
             else{
-                System.out.println("you are out");
+                JOptionPane.showMessageDialog(loginScreen, "Something went wrong, check your information or create a new account!");
             }
         }
-
+        
         
         if(e.getActionCommand().equals("newUser")){
             
@@ -41,7 +53,7 @@ public class LoginScreenController implements ActionListener {
             
             new RegistrationScreenController();
             
-           
+            
             
         }
         

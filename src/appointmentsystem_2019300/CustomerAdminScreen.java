@@ -18,10 +18,10 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class CustomerAdminScreen extends JFrame 
-{LoginScreenController controller;
+public class CustomerAdminScreen extends JFrame {
+    CustomerAdminScreenController controller;
     
-    public CustomerAdminScreen(LoginScreenController Controller){
+    public CustomerAdminScreen(CustomerAdminScreenController Controller){
         frameSetter();
         showCostumerAdminScreen();
         validation();
