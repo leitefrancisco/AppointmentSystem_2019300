@@ -19,9 +19,9 @@ import javax.swing.JPanel;
  * @author Francisco Leite
  */
 public class CustomerAdminScreen extends JFrame 
-{Controller controller;
+{LoginScreenController controller;
     
-    public CustomerAdminScreen(Controller Controller){
+    public CustomerAdminScreen(LoginScreenController Controller){
         frameSetter();
         showCostumerAdminScreen();
         validation();

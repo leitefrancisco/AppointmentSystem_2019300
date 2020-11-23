@@ -6,28 +6,33 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 public class RegistrationScreen extends JFrame {
-    Controller controller;
-    JTextField firstNameCustomer;
-    JTextField lastNameCustomer;
-    JTextField emailCustomer;
-    JPasswordField passwordCustomer;
-    JPasswordField confPasswordCustomer;
-    
-    
-    
-    public RegistrationScreen(Controller controller){
+   
+    JTextField firstName;
+    JTextField lastName;
+    JTextField email;
+    JPasswordField password;
+    JPasswordField confPassword;
+    RegistrationScreenController registrationScreenController;
+    ButtonGroup cOrb;
+    JRadioButton CustomerButton;
+    JRadioButton BarberButton;
+
+    public RegistrationScreen(RegistrationScreenController registrationScreenController){
         
-        this.controller =  controller;
+        this.registrationScreenController =  registrationScreenController;
         frameSetter();
-        showRegistrationScreenBarber();
+        showRegistrationScreen();
         validation();
     }
     
@@ -57,13 +62,13 @@ public class RegistrationScreen extends JFrame {
         this.repaint();
     }
     
-    private void showRegistrationScreenBarber(){
+    private void showRegistrationScreen(){
         
-        firstNameCustomer = new JTextField(15);
-        lastNameCustomer = new JTextField(15);
-        emailCustomer = new JTextField(20);
-        passwordCustomer = new JPasswordField(20);
-        confPasswordCustomer = new JPasswordField(20);
+        firstName = new JTextField(15);
+        lastName = new JTextField(15);
+        email = new JTextField(20);
+        password = new JPasswordField(20);
+        confPassword = new JPasswordField(20);
         
         JLabel nameLabel = new JLabel ("Name:");
         JLabel lastNameLabel = new JLabel ("Last Name:");
@@ -91,8 +96,28 @@ public class RegistrationScreen extends JFrame {
         spacePanel.setLayout(sPLayout);
         fieldsPanel.add(spacePanel);
         
-        JPanel spacePanel2 = new JPanel();
-        spacePanel.add(spacePanel2);
+        
+        JPanel customerOrBarber = new JPanel();
+        spacePanel.add(customerOrBarber);
+//        customerOrBarber.setBackground(Color.red);
+        JLabel cOb = new JLabel("Are you a customer or a barber?");
+        customerOrBarber.add(cOb);
+        
+        String [] cB = {"Customer","Barber"};
+        
+         CustomerButton = new JRadioButton(cB[0]);
+        CustomerButton.setSelected(true);
+        BarberButton = new JRadioButton(cB[1]);
+        
+        cOrb = new ButtonGroup();
+        cOrb.add(CustomerButton);
+        cOrb.add(BarberButton);
+        
+        customerOrBarber.add(CustomerButton);
+        customerOrBarber.add(BarberButton);
+        
+        
+        
         
         JPanel formPanel = new JPanel ();
         GridLayout formPLayout = new GridLayout (3,1);
@@ -100,15 +125,15 @@ public class RegistrationScreen extends JFrame {
         spacePanel.add(formPanel);
         
         formPanel.add(nameLabel);
-        formPanel.add(firstNameCustomer);
+        formPanel.add(firstName);
         formPanel.add(passwordLabel);
-        formPanel.add(passwordCustomer);
+        formPanel.add(password);
         formPanel.add(lastNameLabel);
-        formPanel.add(lastNameCustomer);
+        formPanel.add(lastName);
         formPanel.add(confPasswordLabel);
-        formPanel.add(confPasswordCustomer);
+        formPanel.add(confPassword);
         formPanel.add(emailLabel);
-        formPanel.add(emailCustomer);
+        formPanel.add(email);
         
         JPanel bottomPanel = new JPanel();
         BorderLayout bpLayout = new BorderLayout();
@@ -118,23 +143,43 @@ public class RegistrationScreen extends JFrame {
         JPanel bottomButtonsPanel = new JPanel();
         bottomPanel.add(bottomButtonsPanel, BorderLayout.SOUTH);
         JButton backButton = new JButton ("Back");
-        backButton.addActionListener(controller);
-        backButton.setActionCommand("Back");
+        backButton.addActionListener(registrationScreenController);
+        backButton.setActionCommand("back");
         
-        JButton ConfirmRegButtonCustomer = new JButton ("Confirm Registration - Customer");
-        ConfirmRegButtonCustomer.addActionListener(controller);
-        ConfirmRegButtonCustomer.setActionCommand("ConfirmRegCustomer");
+        JButton ConfirmRegButton = new JButton ("Confirm Registration");
+        ConfirmRegButton.addActionListener(registrationScreenController);
+        ConfirmRegButton.setActionCommand("confReg");
+     
         
-        
-        JButton ConfirmRegButtonBarber = new JButton ("Confirm Registration - Barber");
-        ConfirmRegButtonBarber.addActionListener(controller);
-        ConfirmRegButtonBarber.setActionCommand("ConfirmRegBarber");
-        
-
         bottomButtonsPanel.add(backButton);
-        bottomButtonsPanel.add(ConfirmRegButtonBarber);
-        bottomButtonsPanel.add(ConfirmRegButtonCustomer);
-
+        
+        bottomButtonsPanel.add(ConfirmRegButton);
+        
     }
     
+    
+    public String getFirstName(){
+        return firstName.getText();
+    }
+    
+    public String getLastName(){
+        return lastName.getText();
+    }
+    public String getEmail(){
+        return email.getText();
+    }
+    public String getPassword(){
+        
+        return  String.valueOf(password.getPassword());
+    }
+    public String getPasswordConfirmation(){
+        return String.valueOf(confPassword.getPassword());
+    }
+    
+    public char getUserType(){
+       if(BarberButton.isSelected())
+           return 'b';
+       else 
+           return 'c';
+    }
 }

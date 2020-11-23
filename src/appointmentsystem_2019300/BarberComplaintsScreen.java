@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class BarberComplaintsScreen extends JFrame{
     
-    public BarberComplaintsScreen(Controller Controller){
+    public BarberComplaintsScreen(LoginScreenController Controller){
         
         frameSetter();
         showComplaintsBarberScreen();

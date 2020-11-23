@@ -14,13 +14,13 @@ import javax.swing.JTextField;
 
 public class LoginScreen extends JFrame {
     
-    Controller controller;
+    LoginScreenController loginScreenController;
     private JTextField uName;
     private JTextField uPassword;
     
-    public LoginScreen(Controller controller){
+    public LoginScreen(LoginScreenController controller){
         
-        this.controller =  controller;
+        this.loginScreenController =  controller;
         frameSetter();
         showLoginScreen();
         
@@ -85,7 +85,7 @@ public class LoginScreen extends JFrame {
         item2.setLayout(item2Layout);
         
         JPanel uNamePanel = new JPanel();
-        JLabel uNameLabel = new JLabel ("User Name:");
+        JLabel uNameLabel = new JLabel ("Email:        ");
         uName = new JTextField(15);
         uNamePanel.add(uNameLabel);
         uNamePanel.add(uName);
@@ -100,7 +100,7 @@ public class LoginScreen extends JFrame {
         
         JPanel lButtonPanel = new JPanel();
         JButton loginButton = new JButton("Login");
-        loginButton.addActionListener(controller);
+        loginButton.addActionListener(loginScreenController);
         loginButton.setActionCommand("login");
         lButtonPanel.add(loginButton);
         item2.add(lButtonPanel);
@@ -132,15 +132,12 @@ public class LoginScreen extends JFrame {
         
         JPanel newUserButtonPanel = new JPanel();
         centerNewUser.add(newUserButtonPanel);
-        JButton nUserCustomerButton = new JButton("New User - Curstomer");
-        nUserCustomerButton.addActionListener(controller);
-        nUserCustomerButton.setActionCommand("newUserCustomer");
-        newUserButtonPanel.add(nUserCustomerButton);
+        JButton nUserButton = new JButton("New User");
+        nUserButton.addActionListener(loginScreenController);
+        nUserButton.setActionCommand("newUser");
+        newUserButtonPanel.add(nUserButton);
         
-        JButton nUserBarberButton = new JButton("New User - Barber");
-        nUserBarberButton.addActionListener(controller);
-        nUserBarberButton.setActionCommand("newUserBarber");
-        newUserButtonPanel.add(nUserBarberButton);
+        
     }
     
     

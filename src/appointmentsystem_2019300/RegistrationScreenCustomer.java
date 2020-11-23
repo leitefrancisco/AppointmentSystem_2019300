@@ -13,14 +13,14 @@ import javax.swing.JTextField;
 
 public class RegistrationScreenCustomer extends JFrame {
     
-    Controller controller;
+    LoginScreenController controller;
     JTextField firstNameCustomer;
     JTextField lastNameCustomer;
     JTextField emailCustomer;
     JPasswordField passwordCustomer;
     JPasswordField confPasswordCustomer;
     
-    public RegistrationScreenCustomer(Controller controller){
+    public RegistrationScreenCustomer(LoginScreenController controller){
         
         this.controller =  controller;
         frameSetter();

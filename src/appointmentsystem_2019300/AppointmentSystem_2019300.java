@@ -4,7 +4,8 @@ public class AppointmentSystem_2019300 {
     
     public static void main(String[] args) {
        
-        new Controller();
+        new LoginScreenController();
+        
         
         
     }

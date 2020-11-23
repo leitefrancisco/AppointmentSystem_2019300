@@ -6,37 +6,29 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class Model {
+public class LoginScreenModel {
+    String email;
+    String password;
     
-    public boolean login(User user){
+    public LoginScreenModel(String email, String password){
+        this.email = email; 
+        this.password = password;
+    }
+    
+    public boolean login(){
         
         boolean validLogin = false;
         
         try {
-            String dbServer = "jdbc:mysql://apontejaj.com:3306/Francisco_2019300?useSSL=false";
-            String dbUser = "Francisco_2019300";
-            String dpPassword = "2019300";
-            String query = "select * FROM user WHERE username = '" +user.getUn()+ "' AND password = '"+user.getPw()+"'";
-
-            // Get a connection to the database
-            Connection conn = DriverManager.getConnection(dbServer, dbUser, dpPassword);
-            
-            // Get a statement from the connection
-            Statement stmt = conn.createStatement();
-            //Execute the query
-            ResultSet rs = stmt.executeQuery(query);
-            
+            Database db = new Database();
+           
+            String query = "select * FROM t_user WHERE email = '" + email + "' AND password = '"+ password +"'";
+            ResultSet rs = db.executeQuery(query);
             // Loop through the result set
             if (rs.next()) {
                 validLogin = true;
-                
             }
-            
-            // Close the result set, statement and the connection
-            rs.close();
-            stmt.close();
-            conn.close();
-            
+           db.close();
         } catch (SQLException se) {
             System.out.println("SQL Exception:");
             

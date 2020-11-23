@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class BarberAppointmentScreen extends JFrame {
     
-    public BarberAppointmentScreen(Controller Controller){
+    public BarberAppointmentScreen(LoginScreenController Controller){
         
         frameSetter();
         showAppointmentScreenBarber();
