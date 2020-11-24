@@ -21,7 +21,8 @@ import javax.swing.JPanel;
 public class CustomerAdminScreen extends JFrame {
     CustomerAdminScreenController controller;
     
-    public CustomerAdminScreen(CustomerAdminScreenController Controller){
+    public CustomerAdminScreen(CustomerAdminScreenController controller){
+        this.controller = controller;
         frameSetter();
         showCostumerAdminScreen();
         validation();
@@ -70,6 +71,8 @@ public class CustomerAdminScreen extends JFrame {
         JLabel admpanel = new JLabel("Welcome!");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
+        logOut.addActionListener(controller);
+        logOut.setActionCommand("exitToLogin");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         

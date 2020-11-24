@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
@@ -8,18 +13,21 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 /**
  *
  * @author Francisco Leite
  */
-public class BarberAdminScreen extends JFrame{
+public class BarberFirstLocationScreen extends JFrame {
     
-    BarberAdminScreenController barberAdminScreenController;
     
-    public BarberAdminScreen(BarberAdminScreenController barberAdminScreenController){
-        this.barberAdminScreenController =   barberAdminScreenController;      
+    BarberFirstLocationController barberFirstLocationController;
+    
+    
+    public BarberFirstLocationScreen(BarberFirstLocationController barberFirstLocationController){
+        this.barberFirstLocationController = barberFirstLocationController;
         frameSetter();
-        showBarberAdminScreen();
+        showBarberFirstLocationScreen();
         validation();
     }
     
@@ -43,12 +51,11 @@ public class BarberAdminScreen extends JFrame{
         this.add(topPanel, BorderLayout.PAGE_START);
         JLabel barberShop = new JLabel("Barber Shop") ;
         topPanel.add(barberShop);
-}
+    }
     
-    public void showBarberAdminScreen(){
+    public void showBarberFirstLocationScreen(){
         
         JPanel mainPanel = new JPanel();
-        mainPanel.setBackground(Color.blue);
         BorderLayout mpLayout = new BorderLayout();
         mainPanel.setLayout(mpLayout);
         this.add(mainPanel);
@@ -63,52 +70,45 @@ public class BarberAdminScreen extends JFrame{
         screenName.add(tLeft);
         screenName.add(tRight);
         
-        JLabel admpanel = new JLabel("Admin Panel");
+        JLabel admpanel = new JLabel("Locations");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(barberAdminScreenController);
-        logOut.setActionCommand("exitToLogin");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
         
         JPanel mainPanel2 = new JPanel();
         BorderLayout mp2Layout = new BorderLayout();
         mainPanel2.setLayout(mp2Layout);
         mainPanel.add(mainPanel2, BorderLayout.CENTER);
-
+        
         JPanel topPanelButtons = new JPanel();
         mainPanel2.add(topPanelButtons, BorderLayout.PAGE_START);
         
-        JButton mngAppointments = new JButton("Manage Appointments");
-        JButton locations = new JButton("Add/Remove/Edit Locations");
-        JButton customerComplaints = new JButton("Customer Complaints");
-        JButton editPersonalData = new JButton("Edit Personal Info/Password");
-        
-        
-        topPanelButtons.add(mngAppointments);
-        topPanelButtons.add(locations);
-        topPanelButtons.add(customerComplaints);
-        topPanelButtons.add(editPersonalData);
+        JButton addNewLocation = new JButton("Add New Location");
+        topPanelButtons.add(addNewLocation);
         
         JPanel mainPanel3 = new JPanel();
-        GridLayout mp3Layout = new GridLayout(1,2);
+        BorderLayout mp3Layout = new BorderLayout();
+        mainPanel3.setBackground(Color.black);
         mainPanel3.setLayout(mp3Layout);
         mainPanel2.add(mainPanel3);
         
-        JPanel mainLeft = new JPanel();
-        mainLeft.setBackground(Color.red);
-        mainPanel3.add(mainLeft);
+        JPanel bottomButtons = new JPanel();
+        JButton backButton = new JButton ("Back");
+        backButton.addActionListener(barberFirstLocationController);
+        backButton.setActionCommand("back");
+        bottomButtons.add(backButton);
+        mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
         
-        JPanel mainRight = new JPanel();
-        mainRight.setBackground(Color.blue);
-        mainPanel3.add(mainRight);
         
-
+        
+        
+        
         
     }
     private void validation(){
         this.validate();
         this.repaint();
     }
+    
 }

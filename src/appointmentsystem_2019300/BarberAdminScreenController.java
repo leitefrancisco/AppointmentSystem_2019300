@@ -14,16 +14,25 @@ import java.awt.event.ActionListener;
  */
 public class BarberAdminScreenController implements ActionListener {
     
-    BarberAdminScreen barberAdminScreen;
+    BarberAdminScreen view;
     
     public BarberAdminScreenController(){
-        this.barberAdminScreen = new BarberAdminScreen(this);
+        this.view = new BarberAdminScreen(this);
     }
     
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if(e.getActionCommand().equals("exitToLogin")){ 
+            view.dispose();
+            new LoginScreenController();
+        }
+        
+        
+        
+        
+        
     }
     
     

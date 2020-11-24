@@ -11,14 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/*
 
-Model
---------- Controller
-View
 
-POJO - plain old java object
-*/
 
 /**
  *
@@ -29,9 +23,6 @@ public class RegistrationScreenModel {
     
     User user;
     
-//    public RegistrationScreenModel(User user){
-//        this.user = user;
-//    }
     public RegistrationScreenModel(String firstName, String lastName, String email, String password, String passConf, char userType){
         this.user = new User(firstName, lastName, email, password, passConf, userType);
     }
@@ -71,7 +62,6 @@ public class RegistrationScreenModel {
         }
         return true;
     }
-    
     
     public boolean validateRegister (){
         if (!user.getPassword().equals(user.getPasswordConf()) || user.getPassword().isEmpty()){

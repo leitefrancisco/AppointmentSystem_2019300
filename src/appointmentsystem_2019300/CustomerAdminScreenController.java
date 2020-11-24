@@ -5,17 +5,29 @@
  */
 package appointmentsystem_2019300;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Francisco Leite
  */
-public class CustomerAdminScreenController {
+public class CustomerAdminScreenController implements ActionListener {
     
-    CustomerAdminScreen customerAdminScreen;
+    CustomerAdminScreen view;
     
   CustomerAdminScreenController(){
-      this.customerAdminScreen = new CustomerAdminScreen(this);
+      this.view = new CustomerAdminScreen(this);
   }  
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getActionCommand().equals("exitToLogin")){
+            
+            view.dispose();
+            new LoginScreenController();
+        }
+    }
     
     
     

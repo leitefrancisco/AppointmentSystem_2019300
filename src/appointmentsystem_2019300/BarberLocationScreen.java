@@ -18,11 +18,11 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class BarberLocationsScreen extends JFrame {
+public class BarberLocationScreen extends JFrame {
     
     
     
-    public BarberLocationsScreen(LoginScreenController Controller){
+    public BarberLocationScreen(LoginScreenController Controller){
         
         frameSetter();
         showBarberLocationsScreen();
@@ -100,22 +100,7 @@ public class BarberLocationsScreen extends JFrame {
         
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
         
     }

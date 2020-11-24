@@ -7,14 +7,14 @@ import javax.swing.JOptionPane;
 public class LoginScreenController implements ActionListener {
     
     
-//    LoginScreenModel loginScreenModel;
-    LoginScreen loginScreen;
     
+    LoginScreen loginScreen;
+   
     
     
     public LoginScreenController(){
         
-//        this.loginScreenModel = new LoginScreenModel();
+       
         this.loginScreen = new LoginScreen(this);
         
     }
@@ -24,17 +24,31 @@ public class LoginScreenController implements ActionListener {
         
         if(e.getActionCommand().equals("login")){
             LoginScreenModel model = new LoginScreenModel(loginScreen.getUName(),  loginScreen.getUPassword());
-            boolean result = model.login();
             
-            if(result){
-                int type = model.userType();
-                if (type == 1){
+            User user = model.login();
+            
+            if(user != null){
+                char type = user.getUserType();
+                if (type == 'c'){
+                    loginScreen.dispose();
                     new CustomerAdminScreenController();
-                    
                 }
                 else{
-                    loginScreen.dispose();
-                    new BarberAdminScreenController();
+                    
+                    
+                    BarberAdminScreenModel bmodel = new BarberAdminScreenModel(user);
+                    
+                    if(!bmodel.checkBarberhasLocation()){
+                        
+                        loginScreen.dispose();
+                        new BarberFirstLocationController();
+                        JOptionPane.showMessageDialog(null, "Hi, to start you need to add at least one location to work! You can edit and add more locations after in \"Manage Locations\"");
+                    }else{
+                        loginScreen.dispose();
+                        new BarberAdminScreenController();
+                        
+                    }
+                    
                 }
                 
                 

@@ -82,7 +82,7 @@ public class RegistrationScreen extends JFrame {
         JPanel titleReg = new JPanel();
         mainPanel.add(titleReg, BorderLayout.NORTH);
         titleReg.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        titleReg.add(new JLabel("Barber Registration"));
+        titleReg.add(new JLabel("Registration"));
         
         JPanel fieldsPanel = new JPanel();
         GridLayout fPLayout = new GridLayout(2,1);
@@ -103,7 +103,7 @@ public class RegistrationScreen extends JFrame {
         
         String [] cB = {"Customer","Barber"};
         
-         CustomerButton = new JRadioButton(cB[0]);
+        CustomerButton = new JRadioButton(cB[0]);
         CustomerButton.setSelected(true);
         BarberButton = new JRadioButton(cB[1]);
         
@@ -180,4 +180,7 @@ public class RegistrationScreen extends JFrame {
        else 
            return 'c';
     }
+    
+    
+    
 }

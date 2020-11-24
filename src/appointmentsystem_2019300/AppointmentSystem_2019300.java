@@ -6,8 +6,8 @@ public class AppointmentSystem_2019300 {
        
         new LoginScreenController();
         
-        
-        
+    
+    
     }
     
 }

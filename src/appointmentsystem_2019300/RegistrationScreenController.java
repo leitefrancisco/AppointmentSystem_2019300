@@ -54,6 +54,7 @@ public class RegistrationScreenController implements ActionListener {
                     this.view.getPassword(),
                     this.view.getPasswordConfirmation(),
                     this.view.getUserType()
+                    
             );
             
             if(model.writeUser()){

@@ -15,19 +15,21 @@ public class LoginScreenModel {
         this.password = password;
     }
     
-    public boolean login(){
+    public boolean login00(){
         
         boolean validLogin = false;
         
         try {
             Database db = new Database();
            
-            String query = "select * FROM t_user WHERE email = '" + email + "' AND password = '"+ password +"'";
+            String query = "select * FROM t_user WHERE email = '" + email + "' AND password = '"+ password +"';";
             ResultSet rs = db.executeQuery(query);
             // Loop through the result set
             if (rs.next()) {
                 validLogin = true; 
             }
+            
+            
            db.close();
         } catch (SQLException se) {
             System.out.println("SQL Exception:");
@@ -47,24 +49,31 @@ public class LoginScreenModel {
         return validLogin;
     }
     
-    public int userType(){
-       
-        int userType = 0;
+     public User login(){
+        User user  = null;
+      
         
         try {
             Database db = new Database();
            
-            String query = "select * FROM t_user WHERE email = '" + email + "' AND password = '"+ password +"'";
+            String query = "select * FROM t_user WHERE email = '" + email + "' AND password = '"+ password +"';";
             ResultSet rs = db.executeQuery(query);
-            rs.next();
-            if (rs.getString("user_type").equals("c")) {
-                userType = 1;    
+            
+            if (rs.next()) {
+                user = new User (rs.getString("first_name"),
+                        rs.getString("last_name"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("user_type").charAt(0),
+                        rs.getInt("userID"));
+                        
             }
+            
+            
            db.close();
         } catch (SQLException se) {
             System.out.println("SQL Exception:");
             
-            // Loop through the SQL Exceptions
             while (se != null) {
                 System.out.println("State  : " + se.getSQLState());
                 System.out.println("Message: " + se.getMessage());
@@ -76,8 +85,10 @@ public class LoginScreenModel {
             System.out.println(e);
         }
         
-        return userType;
+        return user;
     }
+    
+    
     
     
     
