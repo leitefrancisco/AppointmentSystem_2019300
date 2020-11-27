@@ -15,18 +15,20 @@ import java.sql.SQLException;
 class BarberAdminScreenModel {
     
     User user;
-    public BarberAdminScreenModel(User user){
-        this.user = user;
+    public BarberAdminScreenModel(){
+        this.user = User.getCurrentUser();
     }
     
     public boolean checkBarberhasLocation(){
         boolean hasLocation =false;
         try{
             Database db = new Database();
-            String query = "SELECT COUNT(*) as c FROM t_location WHERE 'userID' = '"+ user.getUserID() + "'";
+            String query = "SELECT COUNT(*) as c FROM t_location WHERE 'userID' = '"+ User.getCurrentUser().getUserID() + "'";
             ResultSet rs = db.executeQuery(query);
-            
-            hasLocation = rs.getInt("c")>0;
+            if(rs.next())
+            {
+                hasLocation = rs.getInt("c")>0;
+            }
             
             
             db.close();

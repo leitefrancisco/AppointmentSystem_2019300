@@ -7,7 +7,6 @@ import javax.swing.JOptionPane;
 public class LoginScreenController implements ActionListener {
     
     
-    
     LoginScreen loginScreen;
    
     
@@ -25,10 +24,10 @@ public class LoginScreenController implements ActionListener {
         if(e.getActionCommand().equals("login")){
             LoginScreenModel model = new LoginScreenModel(loginScreen.getUName(),  loginScreen.getUPassword());
             
-            User user = model.login();
+            User.setCurrentUser(model.login());
             
-            if(user != null){
-                char type = user.getUserType();
+            if(User.getCurrentUser() != null){
+                char type = User.getCurrentUser().getUserType();
                 if (type == 'c'){
                     loginScreen.dispose();
                     new CustomerAdminScreenController();
@@ -36,11 +35,12 @@ public class LoginScreenController implements ActionListener {
                 else{
                     
                     
-                    BarberAdminScreenModel bmodel = new BarberAdminScreenModel(user);
+                    BarberAdminScreenModel bmodel = new BarberAdminScreenModel();
                     
                     if(!bmodel.checkBarberhasLocation()){
                         
                         loginScreen.dispose();
+                        
                         new BarberFirstLocationController();
                         JOptionPane.showMessageDialog(null, "Hi, to start you need to add at least one location to work! You can edit and add more locations after in \"Manage Locations\"");
                     }else{
@@ -50,9 +50,6 @@ public class LoginScreenController implements ActionListener {
                     }
                     
                 }
-                
-                
-                
                 
             }
             else{
@@ -66,8 +63,6 @@ public class LoginScreenController implements ActionListener {
             loginScreen.dispose();
             
             new RegistrationScreenController();
-            
-            
             
         }
         

@@ -26,8 +26,25 @@ public class BarberFirstLocationController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         
-        
-        
+        if(e.getActionCommand().equals("confLocation")){
+            BarberFirstLocationModel model = new BarberFirstLocationModel(
+                    barberfirstLocationScreen.getBarberLocation(),
+                    barberfirstLocationScreen.checkMon(),
+                    barberfirstLocationScreen.checkTue(),
+                    barberfirstLocationScreen.checkWed(),
+                    barberfirstLocationScreen.checkThu(),
+                    barberfirstLocationScreen.checkFri(), 
+                    barberfirstLocationScreen.checkSat(),
+                    barberfirstLocationScreen.checkSun());
+            
+//            if(model.isValid()==false){
+////                showErrorMessage();
+//            }else{
+//                model.insertLocation();    
+//            }
+            
+            
+        }
     }
     
 }

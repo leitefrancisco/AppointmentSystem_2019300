@@ -19,7 +19,22 @@ public class User {
     private char userType;
     private int userID;
 
+    private static User currentUser;
+    public static User getCurrentUser(){
+        return currentUser;
+    }
+    public static void setCurrentUser(User value){
+        currentUser = value;
+    }
+    
+    public static void Logoff(){
+        currentUser = null;
+    }
+    
    
+    
+    
+    
     
      public User(String email, String password){
         this.password = password;
