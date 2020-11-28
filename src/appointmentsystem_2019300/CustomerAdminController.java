@@ -12,21 +12,25 @@ import java.awt.event.ActionListener;
  *
  * @author Francisco Leite
  */
-public class CustomerAdminScreenController implements ActionListener {
+public class CustomerAdminController implements ActionListener {
     
     CustomerAdminScreen view;
     
-  CustomerAdminScreenController(){
+  CustomerAdminController(){
       this.view = new CustomerAdminScreen(this);
   }  
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("exitToLogin")){
-            
             view.dispose();
             new LoginScreenController();
         }
+        if (e.getActionCommand().equals("makeNewAppointment")){
+            view.dispose();
+            new CustomerNewAppointmentController();
+        }
+        
     }
     
     

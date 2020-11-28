@@ -59,6 +59,9 @@ public class RegistrationScreenController implements ActionListener {
             
             if(model.writeUser()){
                 JOptionPane.showMessageDialog(view, "Welcome, you were registered!");
+                view.dispose();
+                new LoginScreenController();
+                
             }
             else{
                 JOptionPane.showMessageDialog(view, "Sorry something went wrong, check your data and try again!");

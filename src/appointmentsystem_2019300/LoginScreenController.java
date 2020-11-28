@@ -8,12 +8,12 @@ public class LoginScreenController implements ActionListener {
     
     
     LoginScreen loginScreen;
-   
+    
     
     
     public LoginScreenController(){
         
-       
+        
         this.loginScreen = new LoginScreen(this);
         
     }
@@ -30,7 +30,7 @@ public class LoginScreenController implements ActionListener {
                 char type = User.getCurrentUser().getUserType();
                 if (type == 'c'){
                     loginScreen.dispose();
-                    new CustomerAdminScreenController();
+                    new CustomerAdminController();
                 }
                 else{
                     
@@ -46,7 +46,6 @@ public class LoginScreenController implements ActionListener {
                     }else{
                         loginScreen.dispose();
                         new BarberAdminScreenController();
-                        
                     }
                     
                 }

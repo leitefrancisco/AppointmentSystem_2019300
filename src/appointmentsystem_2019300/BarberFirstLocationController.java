@@ -7,6 +7,7 @@ package appointmentsystem_2019300;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,10 +15,10 @@ import java.awt.event.ActionListener;
  */
 public class BarberFirstLocationController implements ActionListener{
     
-    BarberFirstLocationScreen barberfirstLocationScreen;
+    BarberFirstLocationScreen barberFirstLocationScreen;
     
     public BarberFirstLocationController(){
-        this.barberfirstLocationScreen = new BarberFirstLocationScreen(this);
+        this.barberFirstLocationScreen = new BarberFirstLocationScreen(this);
     }
     
   
@@ -28,22 +29,26 @@ public class BarberFirstLocationController implements ActionListener{
         
         if(e.getActionCommand().equals("confLocation")){
             BarberFirstLocationModel model = new BarberFirstLocationModel(
-                    barberfirstLocationScreen.getBarberLocation(),
-                    barberfirstLocationScreen.checkMon(),
-                    barberfirstLocationScreen.checkTue(),
-                    barberfirstLocationScreen.checkWed(),
-                    barberfirstLocationScreen.checkThu(),
-                    barberfirstLocationScreen.checkFri(), 
-                    barberfirstLocationScreen.checkSat(),
-                    barberfirstLocationScreen.checkSun());
+                    barberFirstLocationScreen.getBarberLocation(),
+                    barberFirstLocationScreen.checkMon(),
+                    barberFirstLocationScreen.checkTue(),
+                    barberFirstLocationScreen.checkWed(),
+                    barberFirstLocationScreen.checkThu(),
+                    barberFirstLocationScreen.checkFri(), 
+                    barberFirstLocationScreen.checkSat(),
+                    barberFirstLocationScreen.checkSun());
             
-//            if(model.isValid()==false){
-////                showErrorMessage();
-//            }else{
-//                model.insertLocation();    
-//            }
-            
-            
+            if(model.isValid()==false){
+                JOptionPane.showMessageDialog(barberFirstLocationScreen, "Location can't be empty and you need to choose at least one day to work");
+            }else{
+                model.insertLocation();    
+                barberFirstLocationScreen.dispose();
+                new BarberAdminScreenController();
+            }    
+        }
+        if(e.getActionCommand().equals("back")){
+            barberFirstLocationScreen.dispose();
+            new LoginScreenController();
         }
     }
     

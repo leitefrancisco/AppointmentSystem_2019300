@@ -18,14 +18,16 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class CustomerAdminScreen extends JFrame {
-    CustomerAdminController controller;
+public class CustomerNewAppointmentScreen extends JFrame{
     
-    public CustomerAdminScreen(CustomerAdminController controller){
-        this.controller = controller;
+    CustomerNewAppointmentController customerNewAppointmentController;
+    
+    public CustomerNewAppointmentScreen (CustomerNewAppointmentController customerNewAppointmentController){
+        this.customerNewAppointmentController = customerNewAppointmentController;
         frameSetter();
-        showCostumerAdminScreen();
+        showCustomerNewAppointmentScreen();
         validation();
+        
     }
     
     private void frameSetter(){
@@ -48,12 +50,11 @@ public class CustomerAdminScreen extends JFrame {
         this.add(topPanel, BorderLayout.PAGE_START);
         JLabel barberShop = new JLabel("Barber Shop") ;
         topPanel.add(barberShop);
-}
+    }
     
-    public void showCostumerAdminScreen(){
+    public void showCustomerNewAppointmentScreen(){
         
         JPanel mainPanel = new JPanel();
-        mainPanel.setBackground(Color.blue);
         BorderLayout mpLayout = new BorderLayout();
         mainPanel.setLayout(mpLayout);
         this.add(mainPanel);
@@ -68,70 +69,43 @@ public class CustomerAdminScreen extends JFrame {
         screenName.add(tLeft);
         screenName.add(tRight);
         
-        JLabel admpanel = new JLabel("Welcome!");
+        JLabel admpanel = new JLabel("Complaints");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(controller);
-        logOut.setActionCommand("exitToLogin");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        
-        
         
         JPanel mainPanel2 = new JPanel();
         BorderLayout mp2Layout = new BorderLayout();
         mainPanel2.setLayout(mp2Layout);
         mainPanel.add(mainPanel2, BorderLayout.CENTER);
-
+        
         JPanel topPanelButtons = new JPanel();
         mainPanel2.add(topPanelButtons, BorderLayout.PAGE_START);
         
-        JButton makeNewAppointment = new JButton("Make a New Appointment");
-        makeNewAppointment.addActionListener(controller);
-        makeNewAppointment.setActionCommand("makeNewAppointment");
-        JButton manageAppointments = new JButton("Manage Appointments");
-        JButton makeComplaints = new JButton("Make a Complaint");
-        JButton editPersonalData = new JButton("Edit Personal Info/Password");
         
-        
-        topPanelButtons.add(makeNewAppointment);
-        topPanelButtons.add(manageAppointments);
-        topPanelButtons.add(makeComplaints);
-        topPanelButtons.add(editPersonalData);
         
         JPanel mainPanel3 = new JPanel();
-        GridLayout mp3Layout = new GridLayout(1,2);
+        BorderLayout mp3Layout = new BorderLayout();
+        mainPanel3.setBackground(Color.black);
         mainPanel3.setLayout(mp3Layout);
         mainPanel2.add(mainPanel3);
         
-        JPanel mainLeft = new JPanel();
-        mainLeft.setBackground(Color.red);
-        mainPanel3.add(mainLeft);
+        JPanel bottomButtons = new JPanel();
+        JButton backButton = new JButton ("Back");
+        bottomButtons.add(backButton);
+        mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
         
-        JPanel mainRight = new JPanel();
-        mainRight.setBackground(Color.blue);
-        mainPanel3.add(mainRight);
-        
-        
-        
-        
-        
-        
-        
-     
-        
-        
-        
-        
-        
-        
- 
-        
+
         
     }
     private void validation(){
         this.validate();
         this.repaint();
     }
+    
+    
+    
+    
     
 }

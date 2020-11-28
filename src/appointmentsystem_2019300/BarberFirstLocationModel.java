@@ -28,7 +28,7 @@ public class BarberFirstLocationModel {
             boolean worksFri,
             boolean worksSat,
             boolean worksSun){
-        this.location = location;
+        this.location = location.trim();
         this.worksMon = worksMon;
         this.worksTue = worksTue;
         this.worksWed = worksWed;
@@ -104,14 +104,19 @@ public class BarberFirstLocationModel {
         
         
     }
-//
-//    public boolean isValid() {
-//        
-//        if(worksMon == false)
-//        
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//    
+
+    public boolean isValid() {
+        
+        if(worksMon == false && worksTue == false && worksWed == false && worksThu == false && worksFri == false && worksSat == false && worksSun == false || location.isEmpty()){
+            return false;
+        }
+        else{
+            return true;
+        }
+        
+        
+    }
+    
     
     
     

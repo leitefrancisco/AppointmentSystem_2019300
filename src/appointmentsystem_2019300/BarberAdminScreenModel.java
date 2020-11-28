@@ -23,13 +23,12 @@ class BarberAdminScreenModel {
         boolean hasLocation =false;
         try{
             Database db = new Database();
-            String query = "SELECT COUNT(*) as c FROM t_location WHERE 'userID' = '"+ User.getCurrentUser().getUserID() + "'";
+            String query = "SELECT COUNT(*) as c FROM t_location_barber WHERE barberID = "+ User.getCurrentUser().getUserID() + ";";
             ResultSet rs = db.executeQuery(query);
             if(rs.next())
             {
                 hasLocation = rs.getInt("c")>0;
             }
-            
             
             db.close();
         }

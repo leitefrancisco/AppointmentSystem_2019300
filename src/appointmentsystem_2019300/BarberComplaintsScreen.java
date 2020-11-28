@@ -66,9 +66,10 @@ public class BarberComplaintsScreen extends JFrame{
         screenName.add(tLeft);
         screenName.add(tRight);
         
-        JLabel admpanel = new JLabel("Complaints");
+        JLabel admpanel = new JLabel("Book your Appointment");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
+        logOut.addActionListener(null);
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
