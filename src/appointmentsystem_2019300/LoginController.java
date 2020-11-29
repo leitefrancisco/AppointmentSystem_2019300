@@ -4,14 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
-public class LoginScreenController implements ActionListener {
+public class LoginController implements ActionListener {
     
     
     LoginScreen loginScreen;
     
     
     
-    public LoginScreenController(){
+    public LoginController(){
         
         
         this.loginScreen = new LoginScreen(this);
@@ -22,7 +22,7 @@ public class LoginScreenController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
         if(e.getActionCommand().equals("login")){
-            LoginScreenModel model = new LoginScreenModel(loginScreen.getUName(),  loginScreen.getUPassword());
+            LoginModel model = new LoginModel(loginScreen.getUName(),  loginScreen.getUPassword());
             
             User.setCurrentUser(model.login());
             
@@ -35,17 +35,18 @@ public class LoginScreenController implements ActionListener {
                 else{
                     
                     
-                    BarberAdminScreenModel bmodel = new BarberAdminScreenModel();
+                    BarberAdminModel bmodel = new BarberAdminModel();
                     
                     if(!bmodel.checkBarberhasLocation()){
                         
                         loginScreen.dispose();
                         
                         new BarberFirstLocationController();
+                        
                         JOptionPane.showMessageDialog(null, "Hi, to start you need to add at least one location to work! You can edit and add more locations after in \"Manage Locations\"");
                     }else{
                         loginScreen.dispose();
-                        new BarberAdminScreenController();
+                        new BarberAdminController();
                     }
                     
                 }
@@ -61,7 +62,7 @@ public class LoginScreenController implements ActionListener {
             
             loginScreen.dispose();
             
-            new RegistrationScreenController();
+            new RegistrationController();
             
         }
         

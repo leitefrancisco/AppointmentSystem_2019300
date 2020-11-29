@@ -22,7 +22,7 @@ public class BarberLocationScreen extends JFrame {
     
     
     
-    public BarberLocationScreen(LoginScreenController Controller){
+    public BarberLocationScreen(LoginController Controller){
         
         frameSetter();
         showBarberLocationsScreen();

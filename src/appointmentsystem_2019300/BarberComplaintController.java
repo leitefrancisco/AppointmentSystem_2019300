@@ -12,21 +12,26 @@ import java.awt.event.ActionListener;
  *
  * @author Francisco Leite
  */
-public class BarberAdminScreenController implements ActionListener {
+public class BarberComplaintController implements ActionListener {
+    BarberComplaintScreen barberComplaintScreen;
     
-    BarberAdminScreen view;
-    
-    public BarberAdminScreenController(){
-        this.view = new BarberAdminScreen(this);
+    public BarberComplaintController(){
+        this.barberComplaintScreen = new BarberComplaintScreen(this);
     }
+    
+    
+    
+    
+    
+    
     
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        if(e.getActionCommand().equals("exitToLogin")){ 
-            view.dispose();
-            new LoginScreenController();
+       
+        if(e.getActionCommand().equals("back")){
+            barberComplaintScreen.dispose();
+            new BarberAdminController();
         }
         
         

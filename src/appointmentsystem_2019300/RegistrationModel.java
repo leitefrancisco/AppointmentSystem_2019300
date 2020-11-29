@@ -18,12 +18,12 @@ import java.sql.Statement;
  *
  * @author Francisco Leite
  */
-public class RegistrationScreenModel {
+public class RegistrationModel {
     
     
     User user;
     
-    public RegistrationScreenModel(String firstName, String lastName, String email, String password, String passConf, char userType){
+    public RegistrationModel(String firstName, String lastName, String email, String password, String passConf, char userType){
         this.user = new User(firstName, lastName, email, password, passConf, userType);
     }
     

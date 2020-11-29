@@ -21,12 +21,12 @@ public class RegistrationScreen extends JFrame {
     JTextField email;
     JPasswordField password;
     JPasswordField confPassword;
-    RegistrationScreenController registrationScreenController;
+    RegistrationController registrationScreenController;
     ButtonGroup cOrb;
     JRadioButton CustomerButton;
     JRadioButton BarberButton;
 
-    public RegistrationScreen(RegistrationScreenController registrationScreenController){
+    public RegistrationScreen(RegistrationController registrationScreenController){
         
         this.registrationScreenController =  registrationScreenController;
         frameSetter();

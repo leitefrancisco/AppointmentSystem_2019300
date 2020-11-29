@@ -43,12 +43,12 @@ public class BarberFirstLocationController implements ActionListener{
             }else{
                 model.insertLocation();    
                 barberFirstLocationScreen.dispose();
-                new BarberAdminScreenController();
+                new BarberAdminController();
             }    
         }
         if(e.getActionCommand().equals("back")){
             barberFirstLocationScreen.dispose();
-            new LoginScreenController();
+            new LoginController();
         }
     }
     

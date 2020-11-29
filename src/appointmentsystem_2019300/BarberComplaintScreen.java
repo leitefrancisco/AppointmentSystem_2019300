@@ -18,10 +18,10 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class BarberComplaintsScreen extends JFrame{
-    
-    public BarberComplaintsScreen(LoginScreenController Controller){
-        
+public class BarberComplaintScreen extends JFrame{
+    BarberComplaintController barberComplaintController; 
+    public BarberComplaintScreen(BarberComplaintController barberComplaintController){
+        this.barberComplaintController = barberComplaintController;
         frameSetter();
         showComplaintsBarberScreen();
         validation();
@@ -66,11 +66,11 @@ public class BarberComplaintsScreen extends JFrame{
         screenName.add(tLeft);
         screenName.add(tRight);
         
-        JLabel admpanel = new JLabel("Book your Appointment");
+        JLabel admpanel = new JLabel("Customers Complaints");
         tLeft.add(admpanel);
-        JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(null);
-        tRight.add(logOut);
+        JButton logout = new JButton("Log Out");
+        
+        tRight.add(logout);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
         JPanel mainPanel2 = new JPanel();
@@ -85,14 +85,27 @@ public class BarberComplaintsScreen extends JFrame{
         
         JPanel mainPanel3 = new JPanel();
         BorderLayout mp3Layout = new BorderLayout();
-        mainPanel3.setBackground(Color.black);
+        
         mainPanel3.setLayout(mp3Layout);
         mainPanel2.add(mainPanel3);
         
         JPanel bottomButtons = new JPanel();
+        
         JButton backButton = new JButton ("Back");
+        
+        backButton.addActionListener(barberComplaintController);
+        backButton.setActionCommand("back");
         bottomButtons.add(backButton);
+        
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
+        
+        
+        JPanel mainPanel4 = new JPanel();
+        mainPanel3.add(mainPanel4);
+        
+        
+        
+        
         
         
         

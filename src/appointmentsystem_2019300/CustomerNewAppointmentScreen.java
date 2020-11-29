@@ -69,7 +69,7 @@ public class CustomerNewAppointmentScreen extends JFrame{
         screenName.add(tLeft);
         screenName.add(tRight);
         
-        JLabel admpanel = new JLabel("Complaints");
+        JLabel admpanel = new JLabel("Book Your Appointment");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
         tRight.add(logOut);
@@ -93,8 +93,14 @@ public class CustomerNewAppointmentScreen extends JFrame{
         
         JPanel bottomButtons = new JPanel();
         JButton backButton = new JButton ("Back");
+        backButton.addActionListener(customerNewAppointmentController);
+        backButton.setActionCommand("back");
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
+        
+        JPanel mainPanel4 = new JPanel();
+        mainPanel3.add(mainPanel4);
+        
         
 
         

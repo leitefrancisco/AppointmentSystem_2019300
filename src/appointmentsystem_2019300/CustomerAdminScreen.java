@@ -71,8 +71,8 @@ public class CustomerAdminScreen extends JFrame {
         JLabel admpanel = new JLabel("Welcome!");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(controller);
-        logOut.setActionCommand("exitToLogin");
+        
+        logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
@@ -89,15 +89,16 @@ public class CustomerAdminScreen extends JFrame {
         JButton makeNewAppointment = new JButton("Make a New Appointment");
         makeNewAppointment.addActionListener(controller);
         makeNewAppointment.setActionCommand("makeNewAppointment");
-        JButton manageAppointments = new JButton("Manage Appointments");
+        
         JButton makeComplaints = new JButton("Make a Complaint");
-        JButton editPersonalData = new JButton("Edit Personal Info/Password");
+        makeComplaints.addActionListener(controller);
+        makeComplaints.setActionCommand("makeComplaint");
+        
         
         
         topPanelButtons.add(makeNewAppointment);
-        topPanelButtons.add(manageAppointments);
         topPanelButtons.add(makeComplaints);
-        topPanelButtons.add(editPersonalData);
+        
         
         JPanel mainPanel3 = new JPanel();
         GridLayout mp3Layout = new GridLayout(1,2);

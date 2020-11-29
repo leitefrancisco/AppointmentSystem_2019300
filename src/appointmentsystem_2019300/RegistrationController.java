@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
  *
  * @author Francisco Leite
  */
-public class RegistrationScreenController implements ActionListener {
+public class RegistrationController implements ActionListener {
     
     //RegistrationScreenModel registrationScreenModel;
     RegistrationScreen view;
     
     
     
-    public RegistrationScreenController (){
+    public RegistrationController (){
         this.view = new RegistrationScreen(this);
         // this.registrationScreenModel = new RegistrationScreenModel();
     }
@@ -47,7 +47,7 @@ public class RegistrationScreenController implements ActionListener {
             String passConf;
             */
    
-            RegistrationScreenModel model = new RegistrationScreenModel(
+            RegistrationModel model = new RegistrationModel(
                     this.view.getFirstName(),
                     this.view.getLastName(),
                     this.view.getEmail(),
@@ -60,7 +60,7 @@ public class RegistrationScreenController implements ActionListener {
             if(model.writeUser()){
                 JOptionPane.showMessageDialog(view, "Welcome, you were registered!");
                 view.dispose();
-                new LoginScreenController();
+                new LoginController();
                 
             }
             else{
@@ -69,7 +69,7 @@ public class RegistrationScreenController implements ActionListener {
         }
         else if(e.getActionCommand().equals("back")){
             view.dispose();
-            new LoginScreenController();
+            new LoginController();
         }
         
         

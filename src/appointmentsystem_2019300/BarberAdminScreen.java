@@ -14,10 +14,10 @@ import javax.swing.JPanel;
  */
 public class BarberAdminScreen extends JFrame{
     
-    BarberAdminScreenController barberAdminScreenController;
+    BarberAdminController barberAdminController;
     
-    public BarberAdminScreen(BarberAdminScreenController barberAdminScreenController){
-        this.barberAdminScreenController =   barberAdminScreenController;      
+    public BarberAdminScreen(BarberAdminController barberAdminScreenController){
+        this.barberAdminController = barberAdminScreenController;      
         frameSetter();
         showBarberAdminScreen();
         validation();
@@ -66,8 +66,8 @@ public class BarberAdminScreen extends JFrame{
         JLabel admpanel = new JLabel("Admin Panel");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(barberAdminScreenController);
-        logOut.setActionCommand("exitToLogin");
+        logOut.addActionListener(barberAdminController);
+        logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
@@ -83,13 +83,14 @@ public class BarberAdminScreen extends JFrame{
         JButton mngAppointments = new JButton("Manage Appointments");
         JButton locations = new JButton("Add/Remove/Edit Locations");
         JButton customerComplaints = new JButton("Customer Complaints");
-        JButton editPersonalData = new JButton("Edit Personal Info/Password");
+        customerComplaints.addActionListener(barberAdminController);
+        customerComplaints.setActionCommand("complaint");
+        
         
         
         topPanelButtons.add(mngAppointments);
         topPanelButtons.add(locations);
         topPanelButtons.add(customerComplaints);
-        topPanelButtons.add(editPersonalData);
         
         JPanel mainPanel3 = new JPanel();
         GridLayout mp3Layout = new GridLayout(1,2);

@@ -10,21 +10,30 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 /**
  *
  * @author Francisco Leite
  */
-public class BarberAppointmentScreen extends JFrame {
+public class CustomerComplaintScreen extends JFrame{
     
-    public BarberAppointmentScreen(LoginController Controller){
-        
+    CustomerComplaintController customerComplaintController;
+    JTextField complaint;
+    
+    
+    public CustomerComplaintScreen (CustomerComplaintController customerComplaintController){
+        this.customerComplaintController = customerComplaintController;
         frameSetter();
-        showAppointmentScreenBarber();
+        showCustomerComplaintScreen();
         validation();
+        
     }
     
     private void frameSetter(){
@@ -49,7 +58,7 @@ public class BarberAppointmentScreen extends JFrame {
         topPanel.add(barberShop);
     }
     
-    public void showAppointmentScreenBarber(){
+    public void showCustomerComplaintScreen(){
         
         JPanel mainPanel = new JPanel();
         BorderLayout mpLayout = new BorderLayout();
@@ -66,7 +75,7 @@ public class BarberAppointmentScreen extends JFrame {
         screenName.add(tLeft);
         screenName.add(tRight);
         
-        JLabel admpanel = new JLabel("Appointments");
+        JLabel admpanel = new JLabel("Make Your Complaint");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
         tRight.add(logOut);
@@ -90,36 +99,41 @@ public class BarberAppointmentScreen extends JFrame {
         
         JPanel bottomButtons = new JPanel();
         JButton backButton = new JButton ("Back");
+        backButton.addActionListener(customerComplaintController);
+        backButton.setActionCommand("back");
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
         
+        JPanel mainPanel4 = new JPanel ();
+        
+        mainPanel3.add(mainPanel4);
         
         
+        JLabel selectBarber = new JLabel("Select Barber:");
+        mainPanel4.add(selectBarber);
+        
+        String[] petStrings = { "1", "2", "3", "4", "5" };
+    
+        JComboBox barberList = new JComboBox(petStrings);
+        barberList.setSelectedIndex(0);
+        mainPanel4.add(barberList);
+       
+        
+        complaint = new JTextField(50);
+        mainPanel4.add(complaint);
+        
+        JButton submit = new JButton ("Submit");
+        mainPanel4.add(submit);
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
         
     }
     private void validation(){
         this.validate();
         this.repaint();
     }
+    
     
     
 }

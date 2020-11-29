@@ -18,11 +18,11 @@ import javax.swing.WindowConstants;
 
 public class LoginScreen extends JFrame {
     
-    LoginScreenController loginScreenController;
+    LoginController loginScreenController;
     private JTextField uName;
     private JTextField uPassword;
     
-    public LoginScreen(LoginScreenController controller){
+    public LoginScreen(LoginController controller){
         closeOnX();
         this.loginScreenController =  controller;
         frameSetter();

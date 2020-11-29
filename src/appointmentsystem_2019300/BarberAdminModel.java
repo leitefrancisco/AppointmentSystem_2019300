@@ -12,10 +12,10 @@ import java.sql.SQLException;
  *
  * @author Francisco Leite
  */
-class BarberAdminScreenModel {
+class BarberAdminModel {
     
     User user;
-    public BarberAdminScreenModel(){
+    public BarberAdminModel(){
         this.user = User.getCurrentUser();
     }
     

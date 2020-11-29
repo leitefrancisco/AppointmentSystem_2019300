@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class LoginScreenModel {
+public class LoginModel {
     String email;
     String password;
     
-    public LoginScreenModel(String email, String password){
+    public LoginModel(String email, String password){
         this.email = email; 
         this.password = password;
     }

@@ -22,8 +22,12 @@ public class CustomerNewAppointmentController implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(e.getActionCommand().equals("back")){
+            customerNewAppointmentScreen.dispose();
+            new CustomerAdminController();
+        }
     }
     
     
 }
+
