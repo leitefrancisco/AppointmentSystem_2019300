@@ -33,6 +33,11 @@ class CustomerComplaintController implements ActionListener {
            customerComplaintScreen.dispose();
            new CustomerAdminController();
         }
+        else if (e.getActionCommand().equals("logout")){
+            if(LogoutController.logout()==0){
+            customerComplaintScreen.dispose();
+            }
+        }
         
         
     }

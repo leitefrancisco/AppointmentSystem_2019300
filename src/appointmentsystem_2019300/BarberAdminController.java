@@ -24,10 +24,10 @@ public class BarberAdminController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(e.getActionCommand().equals("logout")){ 
-            
-            
-            
+        if(e.getActionCommand().equals("logout")){
+            if(LogoutController.logout()==0){
+            view.dispose();
+            }
         }
         else if(e.getActionCommand().equals("complaint")){
             view.dispose();

@@ -18,7 +18,7 @@ public class User {
     private String passwordConf;
     private char userType;
     private int userID;
-
+    
     private static User currentUser;
     public static User getCurrentUser(){
         return currentUser;
@@ -26,32 +26,30 @@ public class User {
     public static void setCurrentUser(User value){
         currentUser = value;
     }
-    
+   
     public static void Logoff(){
         currentUser = null;
     }
-    
-   
-    
-    
-    
-    
-     public User(String email, String password){
-        this.password = password;
-        this.email = email;      
+    public User (int id, String firstName, String lastName){
+        this.userID = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
+    public User(String email, String password){
+        this.password = password;
+        this.email = email;
+    }
+    
     
     public User(String firstName, String lastName, String email, String password, char userType){
         this(email, password);
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
-       
-        
     }
     public User(String firstName, String lastName, String email, String password,char userType, int userID){
         this(firstName, lastName, email, password, userType);
-                this.userID = userID;
+        this.userID = userID;
     }
     
     public User(String firstName, String lastName, String email, String password, String passwordConf,char userType){
@@ -79,11 +77,15 @@ public class User {
     public String getPasswordConf() {
         return passwordConf;
     }
-
+    
     public char getUserType() {
         return userType;
     }
-     public int getUserID() {
+    public int getUserID() {
         return userID;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 }

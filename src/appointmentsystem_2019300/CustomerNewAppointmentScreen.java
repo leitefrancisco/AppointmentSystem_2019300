@@ -7,21 +7,41 @@ package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.BorderFactory;
+import javax.swing.ComboBoxModel;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ListSelectionModel;
+import javax.swing.text.DateFormatter;
+import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
  * @author Francisco Leite
  */
 public class CustomerNewAppointmentScreen extends JFrame{
-    
+    private JFormattedTextField dateField;
     CustomerNewAppointmentController customerNewAppointmentController;
-    
+    JList<String> freeSlotsJList;
+    JComboBox barberComboBox;
+    DefaultListModel slotsModel;
+    JComboBox locationComboBox;
+        
     public CustomerNewAppointmentScreen (CustomerNewAppointmentController customerNewAppointmentController){
         this.customerNewAppointmentController = customerNewAppointmentController;
         frameSetter();
@@ -72,6 +92,8 @@ public class CustomerNewAppointmentScreen extends JFrame{
         JLabel admpanel = new JLabel("Book Your Appointment");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
+        logOut.addActionListener(customerNewAppointmentController);
+        logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
@@ -101,14 +123,73 @@ public class CustomerNewAppointmentScreen extends JFrame{
         JPanel mainPanel4 = new JPanel();
         mainPanel3.add(mainPanel4);
         
+        JLabel selectBarber = new JLabel("Select Barber:");
+        mainPanel4.add(selectBarber);
         
+        ComboBoxItem[] barbers = customerNewAppointmentController.getBarbers();
+        
+    
+        barberComboBox = new JComboBox(barbers);
+        barberComboBox.setSelectedIndex(0);
+        mainPanel4.add(barberComboBox);
+       
+    
+        locationComboBox = new JComboBox();
+        mainPanel4.add(locationComboBox);
+        locationComboBox.addItemListener(customerNewAppointmentController.AddItemListenerLocations());
+        locationComboBox.setEnabled(false);
+        
+        barberComboBox.addItemListener(customerNewAppointmentController.AddItemListenerBarbers(locationComboBox));   
+        //https://kodejava.org/how-do-i-use-jformattedtextfield-to-format-user-input/
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormatter df = new DateFormatter(format);
+        
+        dateField = new JFormattedTextField(df);
+        dateField.setPreferredSize(new Dimension(100, 20));
+        dateField.setValue(new Date());
+        
+        mainPanel4.add(dateField);
+        JButton dateB = new JButton ("View Available Time Slots");
+        dateB.addActionListener(customerNewAppointmentController);
+        dateB.setActionCommand("datab");
+        mainPanel4.add(dateB);
+        
+        slotsModel = new DefaultListModel<String>();
+        freeSlotsJList = new JList(slotsModel); 
+        freeSlotsJList.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        
+        JScrollPane listScroller = new JScrollPane(freeSlotsJList);
+        listScroller.setPreferredSize(new Dimension(150, 80));
+        mainPanel4.add(listScroller);
     }
+    
     private void validation(){
         this.validate();
         this.repaint();
     }
+
+    Date getDate() throws ParseException {
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+        DateFormatter df = new DateFormatter(format);
+        String strDate = dateField.getText();
+        return format.parse(strDate);
+    }
+
+    void showFreeSlots(String[] freeSlots) {
+        slotsModel.clear();
+        for(int i=0; i< freeSlots.length; i++){
+            slotsModel.addElement(freeSlots[i]);
+        }
+    }
+
+    int getBarberId() {
+        return ((ComboBoxItem)barberComboBox.getSelectedItem()).getId();
+    }
+
+    int getLocationId() {
+        return ((ComboBoxItem)locationComboBox.getSelectedItem()).getId();
+    }
+    
     
     
     

@@ -25,51 +25,46 @@ public class RegistrationController implements ActionListener {
         // this.registrationScreenModel = new RegistrationScreenModel();
     }
     
-    // View -> [buton] -> controller.action
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("confReg")){
-            /*
             
-            View  []
-            
-            --------- Controller
-            
-            Model
-            
-            
-           
-            String firstName;
-            String lastName;
-            String email;
-            String password;
-            String passConf;
-            */
-   
             RegistrationModel model = new RegistrationModel(
-                    this.view.getFirstName(),
-                    this.view.getLastName(),
-                    this.view.getEmail(),
-                    this.view.getPassword(),
-                    this.view.getPasswordConfirmation(),
+                    this.view.getFirstName().trim(),
+                    this.view.getLastName().trim(),
+                    this.view.getEmail().trim(),
+                    this.view.getPassword().trim(),
+                    this.view.getPasswordConfirmation().trim(),
                     this.view.getUserType()
                     
             );
             
-            if(model.writeUser()){
+            
+            if(!view.getPassword().trim().equals(view.getPasswordConfirmation().trim())){
+                JOptionPane.showMessageDialog(view, "Password and Password Confirmation needs to be the same!");
+            }
+            else if(view.getFirstName().trim().isEmpty()||view.getLastName().trim().isEmpty()||
+                    view.getEmail().trim().isEmpty()||view.getPassword().trim().isEmpty()||
+                    view.getPasswordConfirmation().trim().isEmpty()){
+                JOptionPane.showMessageDialog(view, "All fields needs to be filled");
+            }
+            else if(!view.getEmail().trim().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")){
+                JOptionPane.showMessageDialog(view, "Not a Valid Email ");
+            }
+            else if(model.writeUser()){
                 JOptionPane.showMessageDialog(view, "Welcome, you were registered!");
                 view.dispose();
                 new LoginController();
                 
             }
-            else{
-                JOptionPane.showMessageDialog(view, "Sorry something went wrong, check your data and try again!");
-            }
+            
         }
+        
         else if(e.getActionCommand().equals("back")){
             view.dispose();
             new LoginController();
+       
         }
         
         

@@ -23,7 +23,9 @@ public class CustomerAdminController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("logout")){
-            
+            if(LogoutController.logout()==0){
+            view.dispose();
+            }
         }
         else if (e.getActionCommand().equals("makeNewAppointment")){
             view.dispose();

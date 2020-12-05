@@ -20,7 +20,7 @@ import javax.swing.JPanel;
  */
 public class BarberAppointmentScreen extends JFrame {
     
-    public BarberAppointmentScreen(LoginController Controller){
+    public BarberAppointmentScreen(LoginController controller){
         
         frameSetter();
         showAppointmentScreenBarber();
@@ -69,6 +69,7 @@ public class BarberAppointmentScreen extends JFrame {
         JLabel admpanel = new JLabel("Appointments");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
+        logOut.addActionListener(null);
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         

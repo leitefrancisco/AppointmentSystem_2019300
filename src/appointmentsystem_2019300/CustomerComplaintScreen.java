@@ -78,6 +78,8 @@ public class CustomerComplaintScreen extends JFrame{
         JLabel admpanel = new JLabel("Make Your Complaint");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
+        logOut.addActionListener(customerComplaintController);
+        logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         

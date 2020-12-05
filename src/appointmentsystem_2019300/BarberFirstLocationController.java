@@ -47,8 +47,8 @@ public class BarberFirstLocationController implements ActionListener{
             }    
         }
         if(e.getActionCommand().equals("back")){
+            User.Logoff();
             barberFirstLocationScreen.dispose();
-            new LoginController();
         }
     }
     

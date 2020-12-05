@@ -71,7 +71,7 @@ public class CustomerAdminScreen extends JFrame {
         JLabel admpanel = new JLabel("Welcome!");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        
+        logOut.addActionListener(controller);
         logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));

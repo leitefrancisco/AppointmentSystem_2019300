@@ -33,6 +33,11 @@ public class BarberComplaintController implements ActionListener {
             barberComplaintScreen.dispose();
             new BarberAdminController();
         }
+        else if(e.getActionCommand().equals("logout")){
+            if(LogoutController.logout()==0){
+            barberComplaintScreen.dispose();
+            }
+        }
         
         
         

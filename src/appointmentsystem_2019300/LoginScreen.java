@@ -4,26 +4,20 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.WindowConstants;
 
-public class LoginScreen extends JFrame {
+public class LoginScreen extends Window {
     
     LoginController loginScreenController;
     private JTextField uName;
     private JTextField uPassword;
     
     public LoginScreen(LoginController controller){
-        closeOnX();
         this.loginScreenController =  controller;
         frameSetter();
         showLoginScreen();
@@ -145,25 +139,7 @@ public class LoginScreen extends JFrame {
         
     }
     
-   private void closeOnX(){
-       this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
-        this.addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing (WindowEvent e)
-            {
-                //caixa de dialogo retorna um inteiro
-                int a = JOptionPane.showConfirmDialog(null,"Are you sure you wanna exit?","=[",JOptionPane.YES_NO_OPTION);
-                 
-                //sim = 0, nao = 1
-                if (a == 0)
-                {
-                    System.exit(0);
-                }
-                 
-            }
-        });
-   } 
-    
+   
     public String getUName(){
         return uName.getText();
     }

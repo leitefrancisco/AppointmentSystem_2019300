@@ -68,9 +68,12 @@ public class BarberComplaintScreen extends JFrame{
         
         JLabel admpanel = new JLabel("Customers Complaints");
         tLeft.add(admpanel);
-        JButton logout = new JButton("Log Out");
+        JButton logOut = new JButton("Log Out");
+        logOut.addActionListener(barberComplaintController);
+        logOut.setActionCommand("logout");
         
-        tRight.add(logout);
+        
+        tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
         JPanel mainPanel2 = new JPanel();
