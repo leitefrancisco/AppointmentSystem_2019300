@@ -22,7 +22,7 @@ import javax.swing.ListSelectionModel;
  *
  * @author Francisco Leite
  */
-public class CustomerComplaintScreen extends JFrame{
+public class CustomerComplaintScreen extends Window{
     
     CustomerComplaintController customerComplaintController;
     JTextField complaint;

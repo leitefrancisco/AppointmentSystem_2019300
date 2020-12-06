@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class BarberComplaintScreen extends JFrame{
+public class BarberComplaintScreen extends Window{
     BarberComplaintController barberComplaintController; 
     public BarberComplaintScreen(BarberComplaintController barberComplaintController){
         this.barberComplaintController = barberComplaintController;

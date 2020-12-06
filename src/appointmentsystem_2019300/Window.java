@@ -28,13 +28,13 @@ public class Window extends JFrame {
             public void windowClosing (WindowEvent e)
             {
                 //caixa de dialogo retorna um inteiro
-                int a = JOptionPane.showConfirmDialog(null,"Are you sure you wanna exit?","=[",JOptionPane.YES_NO_OPTION);
+//                int a = JOptionPane.showConfirmDialog(null,"Are you sure you wanna exit?","=[",JOptionPane.YES_NO_OPTION);
                  
                 //sim = 0, nao = 1
-                if (a == 0)
-                {
+//                if (a == 0)
+//                {
                     System.exit(0);
-                }
+//                }
                  
             }
         });

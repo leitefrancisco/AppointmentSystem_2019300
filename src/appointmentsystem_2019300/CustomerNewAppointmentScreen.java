@@ -34,7 +34,7 @@ import jdk.nashorn.internal.objects.NativeArray;
  *
  * @author Francisco Leite
  */
-public class CustomerNewAppointmentScreen extends JFrame{
+public class CustomerNewAppointmentScreen extends Window{
     private JFormattedTextField dateField;
     CustomerNewAppointmentController customerNewAppointmentController;
     JList<String> freeSlotsJList;
@@ -161,6 +161,11 @@ public class CustomerNewAppointmentScreen extends JFrame{
         JScrollPane listScroller = new JScrollPane(freeSlotsJList);
         listScroller.setPreferredSize(new Dimension(150, 80));
         mainPanel4.add(listScroller);
+        
+        JButton confApp = new JButton ("Confirm Appointment");
+        confApp.addActionListener(customerNewAppointmentController);
+        confApp.setActionCommand("confirm");
+        mainPanel4.add(confApp);
     }
     
     private void validation(){

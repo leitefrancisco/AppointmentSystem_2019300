@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class CustomerAdminScreen extends JFrame {
+public class CustomerAdminScreen extends Window{
     CustomerAdminController controller;
     
     public CustomerAdminScreen(CustomerAdminController controller){

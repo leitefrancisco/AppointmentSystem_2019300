@@ -54,9 +54,7 @@ public class CustomerNewAppointmentModel {
         return barbers.toArray(new User[barbers.size()]);
     }
     
-    
-    
-    
+
     ComboBoxItem[] getLocations(int barberId) {
         ArrayList<ComboBoxItem> locations = new  ArrayList<>();
         
@@ -110,6 +108,7 @@ public class CustomerNewAppointmentModel {
         
         return slots.toArray(new String[slots.size()]);
     }
+    
     String[] getTakenSlots(Date date, int barberId, int locationId){
         ArrayList<String> slots = new ArrayList<>();
         
@@ -219,6 +218,40 @@ public class CustomerNewAppointmentModel {
             System.out.println(e);
         }
         return freeSlots.toArray(new String[freeSlots.size()]);
+    }
+
+    public boolean writeAppointment() {
+        try{
+            Database db = new Database();
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            
+            String query = "";
+            
+           
+            
+           
+            
+            db.close();
+        }
+        catch (SQLException se) {
+            System.out.println("SQL Exception:");
+            
+            while (se != null) {
+                System.out.println("State  : " + se.getSQLState());
+                System.out.println("Message: " + se.getMessage());
+                System.out.println("Error  : " + se.getErrorCode());
+                
+                se = se.getNextException();
+            }
+            
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        
+        
+        
+        return false;
     }
     
     

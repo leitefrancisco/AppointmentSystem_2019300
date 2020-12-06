@@ -14,7 +14,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class RegistrationScreen extends JFrame {
+public class RegistrationScreen extends Window {
    
     JTextField firstName;
     JTextField lastName;

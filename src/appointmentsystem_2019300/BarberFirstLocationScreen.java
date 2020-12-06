@@ -28,7 +28,7 @@ import javax.swing.ListSelectionModel;
  *
  * @author Francisco Leite
  */
-public class BarberFirstLocationScreen extends JFrame {
+public class BarberFirstLocationScreen extends Window {
     
     BarberFirstLocationController barberFirstLocationController;
     private JTextField location;

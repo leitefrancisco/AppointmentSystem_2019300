@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class BarberAppointmentScreen extends JFrame {
+public class BarberAppointmentScreen extends Window {
     
     public BarberAppointmentScreen(LoginController controller){
         

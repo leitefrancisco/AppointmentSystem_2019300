@@ -18,7 +18,7 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class BarberLocationScreen extends JFrame {
+public class BarberLocationScreen extends Window {
     
     
     

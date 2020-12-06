@@ -12,7 +12,7 @@ import javax.swing.JPanel;
  *
  * @author Francisco Leite
  */
-public class BarberAdminScreen extends JFrame{
+public class BarberAdminScreen extends Window{
     
     BarberAdminController barberAdminController;
     

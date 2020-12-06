@@ -24,10 +24,10 @@ import javax.swing.event.DocumentListener;
  */
 public class CustomerNewAppointmentController implements ActionListener{
     
-    CustomerNewAppointmentScreen customerNewAppointmentScreen;
+    CustomerNewAppointmentScreen view;
     
     public CustomerNewAppointmentController (){
-        this.customerNewAppointmentScreen = new CustomerNewAppointmentScreen(this);
+        this.view = new CustomerNewAppointmentScreen(this);
     }
     
     
@@ -58,27 +58,31 @@ public class CustomerNewAppointmentController implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(e.getActionCommand().equals("back")){
-            customerNewAppointmentScreen.dispose();
+            view.dispose();
             new CustomerAdminController();
         }
         else if(e.getActionCommand().equals("logout")){
             if(LogoutController.logout()==0){
-                customerNewAppointmentScreen.dispose();
+                view.dispose();
             }
         }
         else if (e.getActionCommand().equals("datab")){
             try {
-                Date selectedDate = customerNewAppointmentScreen.getDate();
+                Date selectedDate = view.getDate();
                 CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
-                int barberId = customerNewAppointmentScreen.getBarberId();
-                int locationId = customerNewAppointmentScreen.getLocationId();
+                int barberId = view.getBarberId();
+                int locationId = view.getLocationId();
                 String[] freeSlots = model.getFreeSlots(selectedDate, barberId, locationId);
-                customerNewAppointmentScreen.showFreeSlots(freeSlots);
+                view.showFreeSlots(freeSlots);
                 
             } catch (ParseException ex) {
                 Logger.getLogger(CustomerNewAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
             }
                     
+        }
+        else if(e.getActionCommand().equals("confirm")){
+            CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
+            model.writeAppointment();
         }
         
         
