@@ -36,14 +36,14 @@ import jdk.nashorn.internal.objects.NativeArray;
  */
 public class CustomerNewAppointmentScreen extends Window{
     private JFormattedTextField dateField;
-    CustomerNewAppointmentController customerNewAppointmentController;
+    CustomerNewAppointmentController controller;
     JList<String> freeSlotsJList;
     JComboBox barberComboBox;
     DefaultListModel slotsModel;
     JComboBox locationComboBox;
         
-    public CustomerNewAppointmentScreen (CustomerNewAppointmentController customerNewAppointmentController){
-        this.customerNewAppointmentController = customerNewAppointmentController;
+    public CustomerNewAppointmentScreen (CustomerNewAppointmentController controller){
+        this.controller = controller;
         frameSetter();
         showCustomerNewAppointmentScreen();
         validation();
@@ -92,7 +92,7 @@ public class CustomerNewAppointmentScreen extends Window{
         JLabel admpanel = new JLabel("Book Your Appointment");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(customerNewAppointmentController);
+        logOut.addActionListener(controller);
         logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -115,7 +115,7 @@ public class CustomerNewAppointmentScreen extends Window{
         
         JPanel bottomButtons = new JPanel();
         JButton backButton = new JButton ("Back");
-        backButton.addActionListener(customerNewAppointmentController);
+        backButton.addActionListener(controller);
         backButton.setActionCommand("back");
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
@@ -126,7 +126,7 @@ public class CustomerNewAppointmentScreen extends Window{
         JLabel selectBarber = new JLabel("Select Barber:");
         mainPanel4.add(selectBarber);
         
-        ComboBoxItem[] barbers = customerNewAppointmentController.getBarbers();
+        ComboBoxItem[] barbers = controller.getBarbers();
         
     
         barberComboBox = new JComboBox(barbers);
@@ -136,10 +136,10 @@ public class CustomerNewAppointmentScreen extends Window{
     
         locationComboBox = new JComboBox();
         mainPanel4.add(locationComboBox);
-        locationComboBox.addItemListener(customerNewAppointmentController.AddItemListenerLocations());
+        locationComboBox.addItemListener(controller.AddItemListenerLocations());
         locationComboBox.setEnabled(false);
         
-        barberComboBox.addItemListener(customerNewAppointmentController.AddItemListenerBarbers(locationComboBox));   
+        barberComboBox.addItemListener(controller.AddItemListenerBarbers(locationComboBox));   
         //https://kodejava.org/how-do-i-use-jformattedtextfield-to-format-user-input/
         DateFormat format = new SimpleDateFormat("dd-MM-yyyy");
         DateFormatter df = new DateFormatter(format);
@@ -150,7 +150,7 @@ public class CustomerNewAppointmentScreen extends Window{
         
         mainPanel4.add(dateField);
         JButton dateB = new JButton ("View Available Time Slots");
-        dateB.addActionListener(customerNewAppointmentController);
+        dateB.addActionListener(controller);
         dateB.setActionCommand("datab");
         mainPanel4.add(dateB);
         
@@ -163,7 +163,7 @@ public class CustomerNewAppointmentScreen extends Window{
         mainPanel4.add(listScroller);
         
         JButton confApp = new JButton ("Confirm Appointment");
-        confApp.addActionListener(customerNewAppointmentController);
+        confApp.addActionListener(controller);
         confApp.setActionCommand("confirm");
         mainPanel4.add(confApp);
     }
@@ -193,6 +193,14 @@ public class CustomerNewAppointmentScreen extends Window{
 
     int getLocationId() {
         return ((ComboBoxItem)locationComboBox.getSelectedItem()).getId();
+    }
+    
+    String getSelectedTimeAndDate() throws ParseException{
+        
+        String time = freeSlotsJList.getSelectedValue();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+       return format.format(getDate()) + " " + time ;
+     
     }
     
     

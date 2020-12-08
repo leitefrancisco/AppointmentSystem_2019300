@@ -25,13 +25,17 @@ public class BarberAdminController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         
         if(e.getActionCommand().equals("logout")){
-            if(LogoutController.logout()==0){
-            view.dispose();
-            }
+            LogoutController.logout(view);
+            
         }
         else if(e.getActionCommand().equals("complaint")){
             view.dispose();
             new BarberComplaintController();
+        }
+        
+        else if (e.getActionCommand().equals("editLocation")){
+            view.dispose();
+            new BarberLocationController();
         }
         
         

@@ -7,17 +7,19 @@ import java.sql.SQLException;
 public class CustomerComplaintModel {
     User user;
     
-    public void writeComplaint(){
+    public boolean writeComplaint(int barberID, int customerID, String complaint, String customerName, String userEmail){
         
         try {
             Database db = new Database();
             
-            String query = "INSERT INTO t_complain VALUES (              )";
+            String query = "INSERT INTO t_complaint (barberID, customerID, complaintText, customerFullName, customerEmail) "
+                    +"VALUES ("+barberID + "," + customerID + ",'"+ complaint +"','"+ customerName +"', '" + userEmail+ "')";
             
             
             db.execute(query);
             
             db.close();
+            return true;
             
         } catch (SQLException se) {
             System.out.println("SQL Exception:");
@@ -36,17 +38,7 @@ public class CustomerComplaintModel {
             System.out.println(e);
             
         }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        return false;
         
     }
     

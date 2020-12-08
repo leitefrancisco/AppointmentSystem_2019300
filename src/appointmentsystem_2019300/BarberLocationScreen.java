@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,10 +21,10 @@ import javax.swing.JPanel;
  */
 public class BarberLocationScreen extends Window {
     
-    
-    
-    public BarberLocationScreen(LoginController Controller){
-        
+    BarberLocationController controller;
+    JPanel mainPanel4;
+    public BarberLocationScreen(BarberLocationController controller){
+        this.controller = controller;
         frameSetter();
         showBarberLocationsScreen();
         validation();
@@ -82,8 +83,12 @@ public class BarberLocationScreen extends Window {
         JPanel topPanelButtons = new JPanel();
         mainPanel2.add(topPanelButtons, BorderLayout.PAGE_START);
         
-        JButton addNewLocation = new JButton("Add New Location");
+        JButton addNewLocation = new JButton("Add New Location.");
+        addNewLocation.addActionListener(controller);
+        addNewLocation.setActionCommand("addNew");
         topPanelButtons.add(addNewLocation);
+    
+                
         
         JPanel mainPanel3 = new JPanel();
         BorderLayout mp3Layout = new BorderLayout();
@@ -96,6 +101,10 @@ public class BarberLocationScreen extends Window {
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
         
+        mainPanel4 = new JPanel();
+        mainPanel3.add(mainPanel4);
+        
+        
         
         
         
@@ -107,6 +116,18 @@ public class BarberLocationScreen extends Window {
     private void validation(){
         this.validate();
         this.repaint();
+    }
+
+    void showLocations(BarberLocation[] locations) {
+        for(int i=0; i< locations.length; i++){
+            BarberLocation loc = locations[i];
+            
+            mainPanel4.add(new JLabel(loc.getLocation()));
+            JButton btn = new JButton("Edit");
+            btn.addActionListener(controller);
+            btn.setActionCommand("edit:"+loc.getLocationId());
+            mainPanel4.add(btn);
+        }
     }
     
 }

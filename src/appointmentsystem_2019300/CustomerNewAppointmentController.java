@@ -31,7 +31,7 @@ public class CustomerNewAppointmentController implements ActionListener{
     }
     
     
-    public ComboBoxItem[] getBarbers(){
+    public static ComboBoxItem[] getBarbers(){
         CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
         User [] barbers = model.getBarbers();
         ComboBoxItem [] items = new ComboBoxItem [barbers.length];
@@ -62,9 +62,8 @@ public class CustomerNewAppointmentController implements ActionListener{
             new CustomerAdminController();
         }
         else if(e.getActionCommand().equals("logout")){
-            if(LogoutController.logout()==0){
-                view.dispose();
-            }
+            LogoutController.logout(view);
+            
         }
         else if (e.getActionCommand().equals("datab")){
             try {
@@ -82,11 +81,15 @@ public class CustomerNewAppointmentController implements ActionListener{
         }
         else if(e.getActionCommand().equals("confirm")){
             CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
-            model.writeAppointment();
-        }
-        
-        
-        
+            try {
+                model.writeAppointment(view.getSelectedTimeAndDate(),
+                        view.getBarberId(),
+                        User.getCurrentUser().getUserID(),
+                        view.getLocationId() );
+            } catch (ParseException ex) {
+                Logger.getLogger(CustomerNewAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }  
     }
     
     ItemListener AddItemListenerBarbers(JComboBox locationComboBox) {
@@ -104,9 +107,7 @@ public class CustomerNewAppointmentController implements ActionListener{
                         locationComboBox.addItem(locations[i]);
                     }
                     locationComboBox.setEnabled(true);
-                    
-                }
-                
+                }   
             }
         };
         return il;
@@ -117,8 +118,8 @@ public class CustomerNewAppointmentController implements ActionListener{
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED){
-                    ComboBoxItem b = (ComboBoxItem) e.getItem();
-                    System.out.println(b);
+//                    ComboBoxItem b = (ComboBoxItem) e.getItem();
+//                    System.out.println(b);
                 }
                 
             }

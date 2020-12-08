@@ -13,10 +13,11 @@ import java.awt.event.ActionListener;
  * @author Francisco Leite
  */
 public class BarberComplaintController implements ActionListener {
-    BarberComplaintScreen barberComplaintScreen;
+    BarberComplaintScreen view;
     
     public BarberComplaintController(){
-        this.barberComplaintScreen = new BarberComplaintScreen(this);
+        this.view = new BarberComplaintScreen(this);
+        showComplaint();
     }
     
     
@@ -30,20 +31,35 @@ public class BarberComplaintController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
        
         if(e.getActionCommand().equals("back")){
-            barberComplaintScreen.dispose();
+            view.dispose();
             new BarberAdminController();
         }
         else if(e.getActionCommand().equals("logout")){
-            if(LogoutController.logout()==0){
-            barberComplaintScreen.dispose();
-            }
+            LogoutController.logout(view);
+            
+        } 
+    }
+    
+    private void showComplaint(){
+        
+        BarberComplaintModel model = new BarberComplaintModel();
+        
+        int amt = model.getAmtOfComplaints(User.getCurrentUser().getUserID());
+        
+        if(amt>0){
+            String [][] complaints = model.getComplaints(User.getCurrentUser().getUserID());
+            view.DisplayData(complaints);
+        }
+        else{
+            
         }
         
         
-        
-        
-        
     }
+    
+    
+    
+    
     
     
     

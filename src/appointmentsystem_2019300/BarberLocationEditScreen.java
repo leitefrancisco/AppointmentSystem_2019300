@@ -28,19 +28,19 @@ import javax.swing.ListSelectionModel;
  *
  * @author Francisco Leite
  */
-public class BarberFirstLocationScreen extends Window {
+public class BarberLocationEditScreen extends Window {
     
-    BarberFirstLocationController barberFirstLocationController;
-    private JTextField location;
-    private   JCheckBox mon;
-    private   JCheckBox tue ;
-    private   JCheckBox wed ;
-    private   JCheckBox thu ;
-    private JCheckBox fri;
-    private  JCheckBox sat;
-    private JCheckBox sun;
+    BarberLocationEditController barberFirstLocationController;
+    private JTextField locationTextField;
+    private   JCheckBox monChkBox;
+    private   JCheckBox tueChkBox ;
+    private   JCheckBox wedChkBox ;
+    private   JCheckBox thuChkBox ;
+    private JCheckBox friChkBox;
+    private  JCheckBox satChkBox;
+    private JCheckBox sunChkBox;
     
-    public BarberFirstLocationScreen(BarberFirstLocationController barberFirstLocationController){
+    public BarberLocationEditScreen(BarberLocationEditController barberFirstLocationController){
         this.barberFirstLocationController = barberFirstLocationController;
         frameSetter();
         showBarberFirstLocationScreen();
@@ -106,9 +106,9 @@ public class BarberFirstLocationScreen extends Window {
         ipLeft.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         infoPanel.add(ipLeft);
         JLabel locLabel = new JLabel("Please insert one location you are going to be working:");
-        location = new JTextField (30);
+        locationTextField = new JTextField (30);
         ipLeft.add(locLabel);
-        ipLeft.add(location);
+        ipLeft.add(locationTextField);
         
         
         JPanel ipRight = new JPanel();
@@ -132,22 +132,22 @@ public class BarberFirstLocationScreen extends Window {
         JPanel top2 = new JPanel();
         npan1.add(top2, BorderLayout.PAGE_START);
         
-        mon = new JCheckBox("Mon");
-        tue = new JCheckBox("Tue");
-        wed = new JCheckBox("Wed");
-        thu = new JCheckBox("Thu");
-        fri = new JCheckBox("Fri");
-        sat = new JCheckBox("Sat");
-        sun = new JCheckBox("Sun");
+        monChkBox = new JCheckBox("Mon");
+        tueChkBox = new JCheckBox("Tue");
+        wedChkBox = new JCheckBox("Wed");
+        thuChkBox = new JCheckBox("Thu");
+        friChkBox = new JCheckBox("Fri");
+        satChkBox = new JCheckBox("Sat");
+        sunChkBox = new JCheckBox("Sun");
         
         
-        top2.add(mon);
-        top2.add(tue);
-        top2.add(wed);
-        top2.add(thu);
-        top2.add(fri);
-        top2.add(sat);
-        top2.add(sun);
+        top2.add(monChkBox);
+        top2.add(tueChkBox);
+        top2.add(wedChkBox);
+        top2.add(thuChkBox);
+        top2.add(friChkBox);
+        top2.add(satChkBox);
+        top2.add(sunChkBox);
         
         JPanel npan2 = new JPanel();
         BorderLayout np2Layout = new BorderLayout();
@@ -273,31 +273,42 @@ public class BarberFirstLocationScreen extends Window {
     }
     
     public String getBarberLocation(){
-        return location.getText();
+        return locationTextField.getText();
     }
     
     public boolean checkMon(){
-        return mon.isSelected();
+        return monChkBox.isSelected();
     }
     public boolean checkTue(){
-        return tue.isSelected();
+        return tueChkBox.isSelected();
     }
     public boolean checkWed(){
-        return wed.isSelected();
+        return wedChkBox.isSelected();
     }
     public boolean checkThu(){
-        return thu.isSelected();
+        return thuChkBox.isSelected();
     }
     public boolean checkFri(){
-        return fri.isSelected();
+        return friChkBox.isSelected();
     }
     public boolean checkSat(){
-        return sat.isSelected();
+        return satChkBox.isSelected();
     }
     public boolean checkSun(){
      
-        return sun.isSelected();
+        return sunChkBox.isSelected();
         
+    }
+
+    void showExistingData(BarberLocationEditModel model) {
+        locationTextField.setText(model.getLocation());
+        monChkBox.setSelected(model.isWorksMon());
+        tueChkBox.setSelected(model.isWorksTue());
+        wedChkBox.setSelected(model.isWorksWed());
+        thuChkBox.setSelected(model.isWorksThu());
+        friChkBox.setSelected(model.isWorksFri());
+        satChkBox.setSelected(model.isWorksSat());
+        sunChkBox.setSelected(model.isWorksSun());
     }
     
     

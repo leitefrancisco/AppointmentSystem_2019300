@@ -14,18 +14,23 @@ import java.awt.event.ActionListener;
  */
 public class CustomerAdminController implements ActionListener {
     
-    CustomerAdminScreen view;
+  CustomerAdminScreen view;
     
   CustomerAdminController(){
       this.view = new CustomerAdminScreen(this);
+      showCurrentAppointments();
   }  
 
+  public void showCurrentAppointments(){
+      Appointment[] appointments = new CustomerAdminModel().getCurrentAppointments();
+      
+      this.view.showCurrentAppointments(appointments);
+  }
+  
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("logout")){
-            if(LogoutController.logout()==0){
-            view.dispose();
-            }
+           LogoutController.logout(view);
         }
         else if (e.getActionCommand().equals("makeNewAppointment")){
             view.dispose();
@@ -34,6 +39,17 @@ public class CustomerAdminController implements ActionListener {
         else if(e.getActionCommand().equals("makeComplaint")){
             view.dispose();
             new CustomerComplaintController();
+        }else if(e.getActionCommand().startsWith("cancelApp:")){  // cancelApp:12
+            // cancel appo
+            int appId = Integer.parseInt(e.getActionCommand().split(":")[1]);
+            if(new CustomerAdminModel().cancelApp(appId)){
+                // messsgae :)
+                view.dispose();
+                this.view = new CustomerAdminScreen(this);
+                showCurrentAppointments();
+            }else{
+                // message :( 
+            }
         }
         
     }

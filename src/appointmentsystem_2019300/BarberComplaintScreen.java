@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
@@ -12,14 +12,20 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 /**
  *
  * @author Francisco Leite
  */
 public class BarberComplaintScreen extends Window{
-    BarberComplaintController barberComplaintController; 
+    BarberComplaintController barberComplaintController;
+    JTable complaintTable;
+    JPanel mainPanel4;
+    
     public BarberComplaintScreen(BarberComplaintController barberComplaintController){
         this.barberComplaintController = barberComplaintController;
         frameSetter();
@@ -103,28 +109,8 @@ public class BarberComplaintScreen extends Window{
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
         
         
-        JPanel mainPanel4 = new JPanel();
+        mainPanel4 = new JPanel();
         mainPanel3.add(mainPanel4);
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
@@ -137,6 +123,22 @@ public class BarberComplaintScreen extends Window{
         this.validate();
         this.repaint();
     }
+    
+    
+    public void DisplayData(String [][] data){
+        
+        
+        
+        String [] columns = {"Custmer Name","Customer Email","Complaint"};
+        
+        
+        JTable complaintsTable= new JTable(data, columns);
+        
+        JScrollPane sp = new JScrollPane(complaintsTable);
+        mainPanel4.add(sp);
+        
+    }
+    
     
     
 }

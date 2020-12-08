@@ -124,10 +124,11 @@ public class RegistrationScreen extends Window {
         
         formPanel.add(nameLabel);
         formPanel.add(firstName);
-        formPanel.add(passwordLabel);
-        formPanel.add(password);
         formPanel.add(lastNameLabel);
         formPanel.add(lastName);
+        formPanel.add(passwordLabel);
+        formPanel.add(password);
+        
         formPanel.add(confPasswordLabel);
         formPanel.add(confPassword);
         formPanel.add(emailLabel);

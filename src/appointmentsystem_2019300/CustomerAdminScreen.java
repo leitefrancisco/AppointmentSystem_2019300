@@ -7,12 +7,15 @@ package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 
 /**
  *
@@ -20,7 +23,7 @@ import javax.swing.JPanel;
  */
 public class CustomerAdminScreen extends Window{
     CustomerAdminController controller;
-    
+     JPanel mainLeft;
     public CustomerAdminScreen(CustomerAdminController controller){
         this.controller = controller;
         frameSetter();
@@ -105,17 +108,16 @@ public class CustomerAdminScreen extends Window{
         mainPanel3.setLayout(mp3Layout);
         mainPanel2.add(mainPanel3);
         
-        JPanel mainLeft = new JPanel();
-        mainLeft.setBackground(Color.red);
+         mainLeft = new JPanel();
+         
         mainPanel3.add(mainLeft);
         
         JPanel mainRight = new JPanel();
         mainRight.setBackground(Color.blue);
         mainPanel3.add(mainRight);
         
-        
-        
-        
+       
+         
         
         
         
@@ -133,6 +135,26 @@ public class CustomerAdminScreen extends Window{
     private void validation(){
         this.validate();
         this.repaint();
+    }
+
+    void showCurrentAppointments(Appointment[] appointments) {
+        
+        mainLeft.setLayout(new GridBagLayout());
+        GridBagConstraints gBcon = new GridBagConstraints();
+        gBcon.gridwidth = GridBagConstraints.REMAINDER; 
+        
+        mainLeft.removeAll();
+        for(int i =0 ; i< appointments.length; i++){
+            Appointment app = appointments[i];
+            JLabel lbl = new JLabel(app.getDate().toString() + " " + app.getLocation() + " " + app.getBarber());
+            mainLeft.add(lbl, gBcon);
+            JButton btn = new JButton("Cancel");
+            btn.addActionListener(controller);
+            btn.setActionCommand("cancelApp:"+app.getAppoitmentId()); // cancelApp:1
+            mainLeft.add(btn, gBcon);
+            
+        }
+        
     }
     
 }

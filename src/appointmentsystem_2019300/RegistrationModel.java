@@ -73,6 +73,41 @@ public class RegistrationModel {
         
     }
     
+    boolean emailExists(String email) {
+        try {
+            Database db = new Database();
+            
+            String query = "SELECT COUNT(email) from t_user WHERE email = '"+email+"'";
+            
+            ResultSet rs = db.executeQuery(query);
+            if(rs.next()){
+                if (rs.getInt(1)>0){
+                    return true;
+                }
+            }
+            db.close();
+            
+        } catch (SQLException se) {
+            System.out.println("SQL Exception:");
+            
+            // Loop through the SQL Exceptions
+            while (se != null) {
+                System.out.println("State  : " + se.getSQLState());
+                System.out.println("Message: " + se.getMessage());
+                System.out.println("Error  : " + se.getErrorCode());
+                
+                se = se.getNextException();
+            }
+            return false;
+            
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return false;
+        
+    }
+    
     
     
 }

@@ -11,12 +11,9 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -24,12 +21,14 @@ import javax.swing.ListSelectionModel;
  */
 public class CustomerComplaintScreen extends Window{
     
-    CustomerComplaintController customerComplaintController;
+    CustomerComplaintController controller;
     JTextField complaint;
+    JComboBox barberCB;
+    
     
     
     public CustomerComplaintScreen (CustomerComplaintController customerComplaintController){
-        this.customerComplaintController = customerComplaintController;
+        this.controller = customerComplaintController;
         frameSetter();
         showCustomerComplaintScreen();
         validation();
@@ -78,7 +77,7 @@ public class CustomerComplaintScreen extends Window{
         JLabel admpanel = new JLabel("Make Your Complaint");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(customerComplaintController);
+        logOut.addActionListener(controller);
         logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -101,7 +100,7 @@ public class CustomerComplaintScreen extends Window{
         
         JPanel bottomButtons = new JPanel();
         JButton backButton = new JButton ("Back");
-        backButton.addActionListener(customerComplaintController);
+        backButton.addActionListener(controller);
         backButton.setActionCommand("back");
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
@@ -114,17 +113,17 @@ public class CustomerComplaintScreen extends Window{
         JLabel selectBarber = new JLabel("Select Barber:");
         mainPanel4.add(selectBarber);
         
-        String[] petStrings = { "1", "2", "3", "4", "5" };
-    
-        JComboBox barberList = new JComboBox(petStrings);
-        barberList.setSelectedIndex(0);
-        mainPanel4.add(barberList);
+        ComboBoxItem [] barbers = CustomerNewAppointmentController.getBarbers();
+        barberCB = new JComboBox(barbers);
+        mainPanel4.add(barberCB);
        
         
         complaint = new JTextField(50);
         mainPanel4.add(complaint);
         
-        JButton submit = new JButton ("Submit");
+        JButton submit = new JButton ("submit");
+        submit.addActionListener(controller);
+        
         mainPanel4.add(submit);
         
         
@@ -134,6 +133,14 @@ public class CustomerComplaintScreen extends Window{
     private void validation(){
         this.validate();
         this.repaint();
+    }
+
+    int getBarberID() {
+        return ((ComboBoxItem)barberCB.getSelectedItem()).getId();
+    }
+
+    String getComplaint() {
+        return complaint.getText();
     }
     
     

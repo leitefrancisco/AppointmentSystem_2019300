@@ -52,6 +52,9 @@ public class RegistrationController implements ActionListener {
             else if(!view.getEmail().trim().matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$")){
                 JOptionPane.showMessageDialog(view, "Not a Valid Email ");
             }
+            else if(model.emailExists(this.view.getEmail().trim())){
+                JOptionPane.showMessageDialog(view, "Email already exists! "); 
+            }
             else if(model.writeUser()){
                 JOptionPane.showMessageDialog(view, "Welcome, you were registered!");
                 view.dispose();

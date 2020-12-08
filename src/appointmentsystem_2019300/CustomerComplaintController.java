@@ -7,6 +7,7 @@ package appointmentsystem_2019300;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,29 +15,38 @@ import java.awt.event.ActionListener;
  */
 class CustomerComplaintController implements ActionListener {
     
-    CustomerComplaintScreen customerComplaintScreen;
+    CustomerComplaintScreen view;
     
     public CustomerComplaintController() {
-        this.customerComplaintScreen = new CustomerComplaintScreen(this);
+        this.view = new CustomerComplaintScreen(this);
     }
-    
-    
-    
-    
-    
     
     
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().equals("back"))
         {
-           customerComplaintScreen.dispose();
+           view.dispose();
            new CustomerAdminController();
         }
         else if (e.getActionCommand().equals("logout")){
-            if(LogoutController.logout()==0){
-            customerComplaintScreen.dispose();
+            LogoutController.logout(view);
+        }
+        else if(e.getActionCommand().equals("submit")){
+
+            CustomerComplaintModel model = new CustomerComplaintModel();
+            
+            if(model.writeComplaint(view.getBarberID(),User.getCurrentUser().getUserID(),
+                    view.getComplaint(),User.getCurrentUser().getFullName(), 
+                    User.getCurrentUser().getEmail())){
+                JOptionPane.showMessageDialog(view, "Complaint Registered, the barber will contact you via email");
+                view.dispose();
+                new CustomerAdminController();
             }
+            else{
+                JOptionPane.showMessageDialog(view, "something went wrong, that's on us ... Try again later.");
+            }
+            
         }
         
         

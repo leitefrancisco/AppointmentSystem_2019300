@@ -140,8 +140,7 @@ public class CustomerNewAppointmentModel {
                 
                 se = se.getNextException();
             }
-            
-            
+             
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -170,7 +169,6 @@ public class CustomerNewAppointmentModel {
                     + "where barberId = "+ barberId + " "
                     + "and locationId = " + locationId  + " "
                     + "and " + selectedWeekDay + "=1";
-            System.out.println(sqlBarberInLocationInDay);
             ResultSet rs = db.executeQuery(sqlBarberInLocationInDay);
             boolean isInLocation = false;
             if(rs.next())
@@ -220,18 +218,20 @@ public class CustomerNewAppointmentModel {
         return freeSlots.toArray(new String[freeSlots.size()]);
     }
 
-    public boolean writeAppointment() {
+    public boolean writeAppointment(String date, int barberId, int customerID, int locationID) {
         try{
             Database db = new Database();
-            DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             
-            String query = "";
-            
+            String query = "insert into t_appointment "
+                    + "(appdayTime, barberID, customerID, locationID) "
+                    + "VALUES('"+ date + "'," 
+                    + barberId +" ,"
+                    +customerID+" ,"
+                    + locationID +")"; 
+           db.execute(query);
            
-            
-           
-            
             db.close();
+            return true;
         }
         catch (SQLException se) {
             System.out.println("SQL Exception:");
@@ -244,13 +244,10 @@ public class CustomerNewAppointmentModel {
                 se = se.getNextException();
             }
             
-            
         } catch (Exception e) {
             System.out.println(e);
         }
-        
-        
-        
+ 
         return false;
     }
     

@@ -82,6 +82,9 @@ public class BarberAdminScreen extends Window{
         
         JButton mngAppointments = new JButton("Manage Appointments");
         JButton locations = new JButton("Add/Remove/Edit Locations");
+        locations.addActionListener(barberAdminController);
+        locations.setActionCommand("editLocation");
+        
         JButton customerComplaints = new JButton("Customer Complaints");
         customerComplaints.addActionListener(barberAdminController);
         customerComplaints.setActionCommand("complaint");

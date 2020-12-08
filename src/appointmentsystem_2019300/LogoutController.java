@@ -22,12 +22,13 @@ public class LogoutController implements ActionListener{
     
     
     
-    public static int logout(){
+    public static int logout(Window window){
         int a = JOptionPane.showConfirmDialog(null,"Are you sure you wanna exit?","=[",JOptionPane.YES_NO_OPTION);
         
         //sim = 0, nao = 1
         if (a == 0)
         {
+            window.dispose();
             User.Logoff();
             new LoginController();
         }
@@ -37,7 +38,7 @@ public class LogoutController implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        logout();
+        
     }
     
 }

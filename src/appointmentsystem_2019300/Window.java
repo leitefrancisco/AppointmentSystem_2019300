@@ -21,6 +21,8 @@ public class Window extends JFrame {
     public Window() throws HeadlessException {
         closeOnX();
     }
+    
+    
     private void closeOnX(){
        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter()

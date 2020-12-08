@@ -15,7 +15,7 @@ public class LoginController implements ActionListener {
         
         
         this.loginScreen = new LoginScreen(this);
-        
+     
     }
     
     @Override
@@ -41,7 +41,7 @@ public class LoginController implements ActionListener {
                         
                         loginScreen.dispose();
                         
-                        new BarberFirstLocationController();
+                        new BarberLocationEditController("login", 0);
                         
                         JOptionPane.showMessageDialog(null, "Hi, to start you need to add at least one location to work! You can edit and add more locations after in \"Manage Locations\"");
                     }else{
