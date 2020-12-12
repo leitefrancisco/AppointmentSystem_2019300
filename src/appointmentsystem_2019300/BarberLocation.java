@@ -9,6 +9,8 @@ package appointmentsystem_2019300;
  *
  * @author Francisco Leite
  */
+
+//class to create a barber lcoation object
 class BarberLocation {
     private int barberId;
     private int locationId;
@@ -20,7 +22,8 @@ class BarberLocation {
     private boolean worksFri;
     private boolean worksSat;
     private boolean worksSun;
-
+    
+    //constructor with the to properties of the location carries the day the barber is available
     public BarberLocation(int barberId, int locationId, String location, boolean worksMon, boolean worksTue, boolean worksWed, boolean worksThu, boolean worksFri, boolean worksSat, boolean worksSun) {
         this.barberId = barberId;
         this.locationId = locationId;
@@ -37,12 +40,10 @@ class BarberLocation {
     public String getLocation() {
         return location;
     }
-
+    
     public void setLocation(String location) {
         this.location = location;
     }
-
-    
     
     public int getBarberId() {
         return barberId;
@@ -55,19 +56,19 @@ class BarberLocation {
     public int getLocationId() {
         return locationId;
     }
-
+    
     public void setLocationId(int locationId) {
         this.locationId = locationId;
     }
-
+    
     public boolean isWorksMon() {
         return worksMon;
     }
-
+    
     public void setWorksMon(boolean worksMon) {
         this.worksMon = worksMon;
     }
-
+    
     public boolean isWorksTue() {
         return worksTue;
     }
@@ -115,6 +116,4 @@ class BarberLocation {
     public void setWorksSun(boolean worksSun) {
         this.worksSun = worksSun;
     }
-    
-    
 }

@@ -25,15 +25,13 @@ public class CustomerComplaintScreen extends Window{
     JTextField complaint;
     JComboBox barberCB;
     
-    
-    
+    //constructor for the view
     public CustomerComplaintScreen (CustomerComplaintController customerComplaintController){
         this.controller = customerComplaintController;
         showCustomerComplaintScreen();
-        validation();
-        
+        validation();   
     }
-    
+    //properties of the view
     public void showCustomerComplaintScreen(){
         
         JPanel mainPanel = new JPanel();
@@ -86,7 +84,6 @@ public class CustomerComplaintScreen extends Window{
         
         mainPanel3.add(mainPanel4);
         
-        
         JLabel selectBarber = new JLabel("Select Barber:");
         mainPanel4.add(selectBarber);
         
@@ -102,24 +99,18 @@ public class CustomerComplaintScreen extends Window{
         submit.addActionListener(controller);
         
         mainPanel4.add(submit);
-        
-        
-
-        
     }
+    
     private void validation(){
         this.validate();
         this.repaint();
     }
-
+    //return the barber ir from the combobox barbers that contains the name and the id of the barbers from the method getBarbers
     int getBarberID() {
-        return ((ComboBoxItem)barberCB.getSelectedItem()).getId();
-    }
-
+        return ((ComboBoxItem)barberCB.getSelectedItem()).getId();//cast of the selected item to get the actual id of the barber instead of its location in the memory
+    }   
+    //return the complaint in the text field
     String getComplaint() {
         return complaint.getText();
     }
-    
-    
-    
 }

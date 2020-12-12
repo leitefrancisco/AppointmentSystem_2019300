@@ -5,7 +5,10 @@
  */
 package appointmentsystem_2019300;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.text.DateFormatter;
 
 /**
  *
@@ -26,15 +29,17 @@ class Appointment {
     private String barber;
     private int status;
     private String time;
+    private String customer;
 
     
-
-    public Appointment(int appoitmentId, Date date, String location, String barber, int status) {
+    //constructor for an appointment object
+    public Appointment(int appoitmentId, Date date, String location, String barber, int status, String customer) {
         this.appoitmentId = appoitmentId;
         this.date = date;
         this.location = location;
         this.barber = barber;
         this.status = status;
+        this.customer = customer;
     }
     
     public int getStatus() {
@@ -80,5 +85,19 @@ class Appointment {
     public String getTime() {
         return time;
     }
+
+    public String getFormattedDate() {
+        DateFormat format = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        return format.format(this.date);
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+    
+    public void setCustomer(String customer){
+        this.customer = customer;
+    }
+    
     
 }

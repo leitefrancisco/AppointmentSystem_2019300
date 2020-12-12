@@ -24,13 +24,14 @@ public class BarberLocationScreen extends Window {
     
     BarberLocationController controller;
     JPanel mainPanel4;
+    //Constructor of the view
     public BarberLocationScreen(BarberLocationController controller){
         this.controller = controller;
         showBarberLocationsScreen();
         validation();
     }
     
-    
+    //view properties
     public void showBarberLocationsScreen(){
         
         JPanel mainPanel = new JPanel();
@@ -89,11 +90,13 @@ public class BarberLocationScreen extends Window {
         mainPanel3.add(jsp);
         
     }
+    
     private void validation(){
         this.validate();
         this.repaint();
     }
 
+    //takes the information from the method in the model and is used by the controller to get information about the locations from the database
     void showLocations(BarberLocation[] locations) {
         mainPanel4.setLayout(new GridBagLayout());
         GridBagConstraints gBcon = new GridBagConstraints();
@@ -105,7 +108,12 @@ public class BarberLocationScreen extends Window {
             JButton btn = new JButton("Edit");
             btn.addActionListener(controller);
             btn.setActionCommand("edit:"+loc.getLocationId());
-            mainPanel4.add(btn, gBcon);
+            mainPanel4.add(btn);
+            
+            JButton btn2 = new JButton("Delete");
+            btn2.addActionListener(controller);
+            btn2.setActionCommand("delete:"+loc.getLocationId());
+            mainPanel4.add(btn2, gBcon);
         }
     }
     

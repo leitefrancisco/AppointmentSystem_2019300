@@ -36,18 +36,16 @@ public class CustomerNewAppointmentController implements ActionListener{
         CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
         User [] barbers = model.getBarbers();
         ComboBoxItem [] items = new ComboBoxItem [barbers.length];
-        for(int i =0; i<barbers.length; i++){
+        for(int i = 0; i<barbers.length; i++){
             items[i] = new ComboBoxItem (barbers[i].getUserID(), barbers[i].getFullName());
         }
-        
         return items;
     }
     
     public ComboBoxItem[] getLocationsByBarber(int barberId){
+        
         CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
-        
         ComboBoxItem [] locations = model.getLocations(barberId);
-        
         
         return locations;
     }
@@ -67,32 +65,43 @@ public class CustomerNewAppointmentController implements ActionListener{
             
         }
         else if (e.getActionCommand().equals("datab")){
-            try {
-                Date selectedDate = view.getDate();
-                CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
-                int barberId = view.getBarberId();
-                int locationId = view.getLocationId();
-                String[] freeSlots = model.getFreeSlots(selectedDate, barberId, locationId);
-                view.showFreeSlots(freeSlots);
+            if(view.getBarberId()!= -1){
                 
-            } catch (ParseException ex) {
-                Logger.getLogger(CustomerNewAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                
+                try {
+                    Date selectedDate = view.getDate();
+                    CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
+                    int barberId = view.getBarberId();
+                    int locationId = view.getLocationId();
+                    String[] freeSlots = model.getFreeSlots(selectedDate, barberId, locationId);
+                    view.showFreeSlots(freeSlots);
                     
-        }
-        else if(e.getActionCommand().equals("confirm")){
-            CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
-            try {
-                model.writeAppointment(view.getSelectedTimeAndDate(),
-                        view.getBarberId(),
-                        User.getCurrentUser().getUserID(),
-                        view.getLocationId() );
-                        JOptionPane.showMessageDialog(view, "Booked! wait for the Barber to Accept your appoint,\n check the status at Welcome Screen");
-                        view.dispose();
-                        new CustomerAdminController();
-            } catch (ParseException ex) {
-                Logger.getLogger(CustomerNewAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ParseException ex) {
+                    Logger.getLogger(CustomerNewAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
             }
+            
+        }
+        
+        
+        else if(e.getActionCommand().equals("confirm")){
+            
+            int a = JOptionPane.showConfirmDialog(null,"Book this appointment?","=[",JOptionPane.YES_NO_OPTION);
+            if (a == 0)
+            {
+                CustomerNewAppointmentModel model = new CustomerNewAppointmentModel();
+                try {
+                    model.writeAppointment(view.getSelectedTimeAndDate(),
+                            view.getBarberId(),
+                            User.getCurrentUser().getUserID(),
+                            view.getLocationId() );
+                    JOptionPane.showMessageDialog(view, "Booked! wait for the Barber to Accept your appoint,\n check the status at Welcome Screen");
+                    view.dispose();
+                    new CustomerAdminController();
+                } catch (ParseException ex) {
+                    Logger.getLogger(CustomerNewAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
+                }}
         }  
     }
     

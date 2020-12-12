@@ -14,28 +14,24 @@ import java.awt.event.ActionListener;
  */
 class BarberAppController implements ActionListener {
         BarberAppScreen view;
-        
+   //constructor of the controller contains the view   and the methods that gather inofrmation from the data base
     public BarberAppController() {
         view = new BarberAppScreen (this);
         showApps();
     }
-    
+    //gets information of all appointments of the barber(current user)
     private void showApps(){
         
         BarberAppModel model = new BarberAppModel();
-        
         int amt = model.getAmtOfApps(User.getCurrentUser().getUserID());
         
         if(amt>0){
             String [][] complaints = model.getApps(User.getCurrentUser().getUserID());
             view.DisplayData(complaints);
         }
-        else{
-            
-        }
     }
     
-
+    //instructions for each button in the current screen
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -45,12 +41,7 @@ class BarberAppController implements ActionListener {
         }
         else if(e.getActionCommand().equals("logout")){
             LogoutController.logout(view);
-            
         }
-    
-    
-    
-    
     }
     
 }

@@ -7,12 +7,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.Border;
 /**
  *
  * @author Francisco Leite
@@ -28,7 +25,7 @@ public class BarberAdminScreen extends Window{
         showBarberAdminScreen();
         validation();
     }
-    
+    //Properties of the Screen
     public void showBarberAdminScreen(){
         
         JPanel mainPanel = new JPanel();
@@ -122,7 +119,10 @@ public class BarberAdminScreen extends Window{
         this.validate();
         this.repaint();
     }
-    
+    /*
+    method to be used in the constructor of the controller to activate the model to get current information on appointments
+    uses for loop to generate labels and buttons for each pending appoitment.
+    */
     void showPenApps(Appointment[] appointments) {
         
         mainLeft.setLayout(new GridBagLayout());
@@ -133,21 +133,26 @@ public class BarberAdminScreen extends Window{
         for(int i =0 ; i< appointments.length; i++){
             
             Appointment app = appointments[i];
-            JLabel lbl = new JLabel(app.getDate().toString() + " " + app.getLocation() + " " + app.getBarber());
-            mainLeft.add(lbl);
-            JButton confirmBtn = new JButton("Confirm");
-            confirmBtn.addActionListener(controller);
-            confirmBtn.setActionCommand("confirmApp:"+app.getAppoitmentId());
-            mainLeft.add(confirmBtn);
-            
-            JButton btn = new JButton("Don't Accept");
-            btn.addActionListener(controller);
-            btn.setActionCommand("cancelApp:"+app.getAppoitmentId());
-            mainLeft.add(btn,gBcon );
+            if(app.getStatus() == 0){
+                JLabel lbl = new JLabel(app.getFormattedDate().toString() + " " + app.getLocation() + " " + app.getCustomer());
+                mainLeft.add(lbl);
+                JButton confirmBtn = new JButton("Confirm");
+                confirmBtn.addActionListener(controller);
+                confirmBtn.setActionCommand("confirmApp:"+app.getAppoitmentId());
+                mainLeft.add(confirmBtn);
+                
+                JButton btn = new JButton("Don't Accept");
+                btn.addActionListener(controller);
+                btn.setActionCommand("cancelApp:"+app.getAppoitmentId());
+                mainLeft.add(btn,gBcon );
+            }
             
         }
     }
-    
+    /*
+    method to be used in the constructor of the controller to activate the model to get current information on appointments
+    uses for loop to generate labels and buttons for each confirmed appoitment.
+    */
     void showConfApps(Appointment[] appointments) {
         
         mainRight.setLayout(new GridBagLayout());
@@ -156,21 +161,23 @@ public class BarberAdminScreen extends Window{
         
         mainRight.removeAll();
         for(int i =0 ; i< appointments.length; i++){
-            
             Appointment app = appointments[i];
-            JLabel lbl = new JLabel(app.getDate().toString() + " " + app.getLocation() + " " + app.getBarber());
-            mainRight.add(lbl);
             
-            JButton btn = new JButton("Cancel");
-            btn.addActionListener(controller);
-            btn.setActionCommand("cancelApp:"+app.getAppoitmentId());
-            mainRight.add(btn);
             
-            JButton complete = new JButton("Set as Completed");
-            complete.addActionListener(controller);
-            complete.setActionCommand("complete:"+app.getAppoitmentId());
-            mainRight.add(complete,gBcon );
-            
+            if(app.getStatus() == 1){
+                JLabel lbl = new JLabel(app.getFormattedDate() + " " + app.getLocation() + " " + app.getCustomer());
+                mainRight.add(lbl);
+                
+                JButton btn = new JButton("Cancel");
+                btn.addActionListener(controller);
+                btn.setActionCommand("cancelApp:"+app.getAppoitmentId());
+                mainRight.add(btn);
+                
+                JButton complete = new JButton("Set as Completed");
+                complete.addActionListener(controller);
+                complete.setActionCommand("complete:"+app.getAppoitmentId());
+                mainRight.add(complete,gBcon );
+            }
         }
         
     }

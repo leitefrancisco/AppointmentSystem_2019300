@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
@@ -16,20 +11,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-/**
- *
- * @author Francisco Leite
- */
 public class CustomerAdminScreen extends Window{
     CustomerAdminController controller;
      JPanel mainLeft;
      JPanel mainPanel3;
+     //Constructor for the view 
     public CustomerAdminScreen(CustomerAdminController controller){
         this.controller = controller;
         showCostumerAdminScreen();
         validation();
     }
-    
+    //Properties of the view
     public void showCostumerAdminScreen(){
         
         JPanel mainPanel = new JPanel();
@@ -65,6 +57,7 @@ public class CustomerAdminScreen extends Window{
 
         JPanel topPanelButtons = new JPanel();
         mainPanel2.add(topPanelButtons, BorderLayout.PAGE_START);
+        topPanelButtons.add(new JLabel("Your Appointments"));
         
         JButton makeNewAppointment = new JButton("Make a New Appointment");
         makeNewAppointment.addActionListener(controller);
@@ -83,24 +76,16 @@ public class CustomerAdminScreen extends Window{
         mainPanel3 = new JPanel();
         JScrollPane jsp = new JScrollPane(mainPanel3);
         jsp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//        GridLayout mp3Layout = new GridLayout(1,2);
-//        mainPanel3.setLayout(mp3Layout);
+
         mainPanel2.add(jsp);
-        
-//        mainLeft = new JPanel();
-         
-//        mainPanel3.add(mainLeft);
-        
-//        JPanel mainRight = new JPanel();
-//        mainRight.setBackground(Color.blue);
-//        mainPanel3.add(mainRight);
-        
+  
     }
+    
     private void validation(){
         this.validate();
         this.repaint();
     }
-
+    //show the current appoitments gotten by the controller and the model
     void showCurrentAppointments(Appointment[] appointments) {
         
         mainPanel3.setLayout(new GridBagLayout());
@@ -108,6 +93,7 @@ public class CustomerAdminScreen extends Window{
         gBcon.gridwidth = GridBagConstraints.REMAINDER; 
         
         mainPanel3.removeAll();
+        
         for(int i =0 ; i< appointments.length; i++){
             
             Appointment app = appointments[i];
@@ -119,15 +105,15 @@ public class CustomerAdminScreen extends Window{
             else if (app.getStatus()==1){
                 status = "Confirmed";
             }
-            JLabel lbl = new JLabel(app.getDate().toString() + " " + app.getLocation() + " " + app.getBarber()+" "+ status);
+            
+            JLabel lbl = new JLabel(app.getFormattedDate() + "- in " + app.getLocation() + " with Barber " + app.getBarber()+" ------------ "+ status+ " ------------ ");
             mainPanel3.add(lbl);
             JButton btn = new JButton("Cancel");
             btn.addActionListener(controller);
-            btn.setActionCommand("cancelApp:"+app.getAppoitmentId()); // cancelApp:1
+            btn.setActionCommand("cancelApp:"+app.getAppoitmentId());
             mainPanel3.add(btn, gBcon);
             
         }
         
-    }
-    
+    } 
 }

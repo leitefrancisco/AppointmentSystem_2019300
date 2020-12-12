@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package appointmentsystem_2019300;
 
 import java.sql.ResultSet;
@@ -14,27 +14,24 @@ import java.util.ArrayList;
  * @author Francisco Leite
  */
 class BarberLocationModel {
-
-    public BarberLocationModel() {
-    }
-
+    //gets the locations of the barber logged in the app (current User)
     BarberLocation[] getBarberLocations() {
-          ArrayList<BarberLocation> list = new  ArrayList<>();
+        ArrayList<BarberLocation> list = new  ArrayList<>();
         
         try{
             Database db = new Database();
             String query = "SELECT barberID, lb.locationID, location, mon, tue, wed, thu, fri, sat, sun FROM t_location_barber lb"
-                        + " inner join t_location l"
-                        + " on lb.locationID = l.locationID" 
-                        + " where barberID = " + User.getCurrentUser().getUserID();
+                    + " inner join t_location l"
+                    + " on lb.locationID = l.locationID"
+                    + " where barberID = " + User.getCurrentUser().getUserID();
             ResultSet rs = db.executeQuery(query);
             
             while(rs.next())
             {
-                list.add(new BarberLocation(rs.getInt(1), 
-                        rs.getInt(2), 
-                        rs.getString(3), 
-                        rs.getBoolean(4),  
+                list.add(new BarberLocation(rs.getInt(1),
+                        rs.getInt(2),
+                        rs.getString(3),
+                        rs.getBoolean(4),
                         rs.getBoolean(5),
                         rs.getBoolean(6),
                         rs.getBoolean(7),
@@ -63,6 +60,35 @@ class BarberLocationModel {
             
         }
         return list.toArray(new BarberLocation[list.size()]);
+    }
+    
+    boolean deleteRelation(int locID) {
+        
+        try{
+             Database db = new Database();
+            String query = "DELETE from t_location_barber where barberID = "+ User.getCurrentUser().getUserID() + " and locationID = " + locID;
+            db.execute(query);
+            db.close();
+            return true;
+        }
+        catch (SQLException se) {
+            System.out.println("SQL Exception:");
+            
+            // Loop through the SQL Exceptions
+            while (se != null) {
+                System.out.println("State  : " + se.getSQLState());
+                System.out.println("Message: " + se.getMessage());
+                System.out.println("Error  : " + se.getErrorCode());
+                
+                se = se.getNextException();
+            }
+            
+            
+        } catch (Exception e) {
+            System.out.println(e);
+            
+        }
+        return false;
     }
     
 }

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class CustomerComplaintModel {
     User user;
-    
+    //writes a new complaint in the database with the ids of the customer and the barber.
     public boolean writeComplaint(int barberID, int customerID, String complaint, String customerName, String userEmail){
         
         try {
@@ -40,17 +40,5 @@ public class CustomerComplaintModel {
         }
         return false;
         
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    } 
 }

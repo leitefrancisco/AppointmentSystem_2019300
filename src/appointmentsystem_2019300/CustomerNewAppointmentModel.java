@@ -21,7 +21,7 @@ public class CustomerNewAppointmentModel {
     
     public User[] getBarbers() {
         ArrayList<User> barbers = new  ArrayList<>();
-        
+        barbers.add(new User(-1, "Select", "Barber"));
         try{
             Database db = new Database();
             String query = "SELECT * FROM t_user WHERE user_type = 'b';";
@@ -117,7 +117,8 @@ public class CustomerNewAppointmentModel {
             DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             
             String sqlTakenSlots = "select DATE_FORMAT(appDayTime, '%H:%i') as slot from t_appointment " +
-                                    "where barberId="+barberId+" and locationId=" + locationId + " " +
+                                    "where status != 2 and barberId="+barberId+" and locationId=" + locationId + " " +
+                                    
                                  " and DATE_FORMAT(appDayTime, '%Y-%m-%d') = '" + format.format(date) + "'";
             
              ResultSet rs = db.executeQuery(sqlTakenSlots);

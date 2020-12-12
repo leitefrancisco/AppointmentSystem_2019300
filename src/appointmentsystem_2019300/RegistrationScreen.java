@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -25,7 +24,7 @@ public class RegistrationScreen extends Window {
     ButtonGroup cOrb;
     JRadioButton CustomerButton;
     JRadioButton BarberButton;
-
+    //Constructor for the Registration Screen
     public RegistrationScreen(RegistrationController registrationScreenController){
         
         this.registrationScreenController =  registrationScreenController;
@@ -37,7 +36,7 @@ public class RegistrationScreen extends Window {
         this.validate();
         this.repaint();
     }
-    
+    //Properties of the view
     private void showRegistrationScreen(){
         
         firstName = new JTextField(15);
@@ -132,34 +131,33 @@ public class RegistrationScreen extends Window {
         
         bottomButtonsPanel.add(ConfirmRegButton);
         
-    }
-    
-    
+    }   
+    //returns the content of the jtextfield
     public String getFirstName(){
         return firstName.getText();
     }
-    
+    //returns the content of the jtextfield   
     public String getLastName(){
         return lastName.getText();
     }
+    //returns the content of the jtextfield
     public String getEmail(){
         return email.getText();
     }
+    //returns the content of the jtextfield
     public String getPassword(){
         
         return  String.valueOf(password.getPassword());
     }
+    //returns the content of the jtextfield
     public String getPasswordConfirmation(){
         return String.valueOf(confPassword.getPassword());
     }
-    
+    //returns the type of user (customer or barber ) based on the selected radio button 
     public char getUserType(){
        if(BarberButton.isSelected())
            return 'b';
        else 
            return 'c';
-    }
-    
-    
-    
+    }    
 }

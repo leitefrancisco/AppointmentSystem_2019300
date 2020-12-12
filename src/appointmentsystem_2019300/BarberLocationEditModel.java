@@ -7,6 +7,8 @@ package appointmentsystem_2019300;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -26,7 +28,7 @@ public class BarberLocationEditModel {
     public BarberLocationEditModel(){}
     
     public BarberLocationEditModel(
-            String location, 
+            String location,
             boolean worksMon,
             boolean worksTue,
             boolean worksWed,
@@ -35,7 +37,7 @@ public class BarberLocationEditModel {
             boolean worksSat,
             boolean worksSun,
             int locationID
-            ){
+    ){
         this.location = location.trim();
         this.worksMon = worksMon;
         this.worksTue = worksTue;
@@ -46,54 +48,54 @@ public class BarberLocationEditModel {
         this.worksSun = worksSun;
         this.locationID = locationID;
     }
-
+    
     public int getLocationID() {
         return locationID;
     }
-
+    
     public String getLocation() {
         return location;
     }
-
+    
     public boolean isWorksMon() {
         return worksMon;
     }
-
+    
     public boolean isWorksTue() {
         return worksTue;
     }
-
+    
     public boolean isWorksWed() {
         return worksWed;
     }
-
+    
     public boolean isWorksThu() {
         return worksThu;
     }
-
+    
     public boolean isWorksFri() {
         return worksFri;
     }
-
+    
     public boolean isWorksSat() {
         return worksSat;
     }
-
+    
     public boolean isWorksSun() {
         return worksSun;
     }
     
- 
+    
     public void loadFromDb(int locationID){
-         try{
+        try{
             Database db = new Database();
             String query = "SELECT barberID, l.locationID, location, mon, tue, wed, thu, fri, sat, sun"
-                        + " FROM t_location_barber lb"
-                        + " inner join t_location l"
-                        + " on lb.locationID = l.locationID"
-                        + " where barberID = " + User.getCurrentUser().getUserID() + " and l.locationID = " + locationID;
+                    + " FROM t_location_barber lb"
+                    + " inner join t_location l"
+                    + " on lb.locationID = l.locationID"
+                    + " where barberID = " + User.getCurrentUser().getUserID() + " and l.locationID = " + locationID;
             
-             
+            
             ResultSet rs = db.executeQuery(query);
             
             if(rs.next())
@@ -147,11 +149,11 @@ public class BarberLocationEditModel {
         Database db = new Database();
         String query = "INSERT INTO t_location (location) VALUES ('" +  location    +"');" ;
         db.execute(query); // create
-        //reade created 
+        //reade created
         ResultSet rs = db.executeQuery("select locationID from t_location where location='" + location + "';");
         int locationId = 0;
         if(rs.next())
-           locationId = rs.getInt(1);
+            locationId = rs.getInt(1);
         db.close();
         return locationId;
     }
@@ -160,18 +162,18 @@ public class BarberLocationEditModel {
         
         // Sandyford
         try{
-            User u = User.getCurrentUser();  
+            User u = User.getCurrentUser();
             int locationId = getLocationId(); // para o caso da localizacao ja existir
             if(locationId == 0){
                 locationId = createLocation();
             }
-             
+            
             // relacao entre localizao e barbeiro
             Database db = new Database();
             String query = "INSERT into t_location_barber(barberId, locationId, mon, tue, wed, thu, fri, sat, sun) "
-                    + "values(" + u.getUserID() + "," + locationId + ", " + worksMon 
+                    + "values(" + u.getUserID() + "," + locationId + ", " + worksMon
                     + ", " + worksTue + ", " + worksWed + ", " + worksThu + ", " + worksFri
-                     + ", " + worksSat + ", " + worksSun+");";
+                    + ", " + worksSat + ", " + worksSun+");";
             db.execute(query);
             db.close();
             return true;
@@ -196,7 +198,7 @@ public class BarberLocationEditModel {
         
         
     }
-
+    
     public boolean isValid() {
         if(worksMon == false && worksTue == false && worksWed == false && worksThu == false && worksFri == false && worksSat == false && worksSun == false || location.isEmpty()){
             return false;
@@ -207,57 +209,117 @@ public class BarberLocationEditModel {
         
         
     }
-
-    void saveLocation() {
+    
+    void saveLocation() throws Exception {
         if(locationID == 0)
         {
             insertLocation();
         }else{
-            updateLocation();
+            try {
+                updateLocation();
+            }
+            catch (SQLException se) {
+                System.out.println("SQL Exception:");
+                
+                while (se != null) {
+                    System.out.println("State  : " + se.getSQLState());
+                    System.out.println("Message: " + se.getMessage());
+                    System.out.println("Error  : " + se.getErrorCode());
+                    
+                    se = se.getNextException();
+                }
+                
+            }  
         }
         
-    }
-
-    private void updateLocation() {
-        int antigaID = locationID;
         
+    }
+    
+    private void updateLocation() throws SQLException, Exception {
+        int oldID = locationID;
+        BarberLocationEditModel modelInDb = new BarberLocationEditModel();
         // carregar a location da bd. select location from location where location = locationId
+        modelInDb.loadFromDb(oldID);
         // ver se o nome da location que vem da bd é diferente do que vem do model
         //           o do model é o que vem da UI
+        boolean isSameLocation = modelInDb.getLocation().equals(this.getLocation());
         // se forem diferentes entao é uma localizacao diferente
-        //       --> ver se é uma nova ( mesmo processo do Insert)
-        //       --> ver se é existente
-        // se for existente o locationID vai o que vem da existente
-        // se for nova, tem que se inserir uma nove t_location
-        //      usa createLocation que insere na t_location e devolve o ID inserido
-        
-        
-        // agora temos o ID da location nova ou editada e fazem o update de locationId na table location_barber
-        
         // /!\ se houver alteracao da location, guardar a locationID antiga numa variavel auxiliar para user no where to update
         
-        
-        
-        /*
-        Sandyford => Tabuate  // 1 => ?
-        
-        Tabuate nao existe na bd
-        antigaID = locationID;  // antiga => 1
-        locationID = createLocation(); // 12
-        
-        
-        // main target
-        update t_location_barber
-        set locationId = locationID,  // 12
-        mon = this.worksMon,
-        tue=this.worksTue,
-        ...
-        where barberId = user.getUSerID() and locationID=antigaID  //1
-        
-        
-        
-        
-        */
+        int newLocationId = 0;
+        if(!isSameLocation){
+            //       --> ver se é uma nova ( mesmo processo do Insert)
+            //       --> ver se é existente
+            // se for existente o locationID vai o que vem da existente
+            // se for nova, tem que se inserir uma nove t_location
+            //      usa createLocation que insere na t_location e devolve o ID inserido
+            newLocationId = this.getLocationId(); // para o caso da localizacao ja existir
+            if(newLocationId == 0){
+                newLocationId = createLocation();
+            }
+            // agora temos o ID da location nova ou editada e fazem o update de locationId na table location_barber
+            
+        }else{
+            newLocationId = this.locationID;
+        }
+        if(this.locationAlreadyTaken(newLocationId)){
+           throw new Exception("Location taken");
+        }else{
+            // Sandyford
+            
+            // relacao entre localizao e barbeiro
+            Database db = new Database();
+            String updateQuery = "UPDATE t_location_barber "
+                    + " SET locationID = " + newLocationId + ","
+                    + " mon = "+ worksMon + ","
+                    + " tue = "+ worksTue + ","
+                    + " wed = "+ worksWed + ","
+                    + " thu = "+ worksThu + ","
+                    + " fri = "+ worksFri + ","
+                    + " sat = "+ worksSat + ","
+                    + " sun = "+ worksSun
+                    + " WHERE barberID = " + User.getCurrentUser().getUserID()
+                    + " and locationID = " + oldID;
+            db.execute(updateQuery);
+            db.close();
+            
+            
+            
+            /*
+            Sandyford => Tabuate  // 1 => ?
+            
+            Tabuate nao existe na bd
+            antigaID = locationID;  // antiga => 1
+            locationID = createLocation(); // 12
+            
+            
+            // main target
+            update t_location_barber
+            set locationId = locationID,  // 12
+            mon = this.worksMon,
+            tue=this.worksTue,
+            ...
+            where barberId = user.getUSerID() and locationID=antigaID  //1
+            
+            
+            
+            
+            */
+        }
+    }
+    private boolean locationAlreadyTaken(int newLocationId) throws SQLException {
+        Database db = new Database();
+        String query = "SELECT count(*) "
+                + " from t_location_barber "
+                + " where locationId=" + newLocationId + ""
+                + " and barberId=" + User.getCurrentUser().getUserID();
+        boolean isTaken = false;
+        ResultSet rs = db.executeQuery(query);
+        if(rs.next()){
+            isTaken = rs.getInt(1)>0;
+        }
+        db.close();
+        return isTaken;
     }
     
     

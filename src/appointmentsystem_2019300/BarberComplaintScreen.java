@@ -10,30 +10,23 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-/**
- *
- * @author Francisco Leite
- */
 public class BarberComplaintScreen extends Window{
-    BarberComplaintController barberComplaintController;
+    BarberComplaintController controller;
     JTable complaintTable;
     JPanel mainPanel3;
     
+    //Constructor of the view
     public BarberComplaintScreen(BarberComplaintController barberComplaintController){
-        this.barberComplaintController = barberComplaintController;
+        this.controller = barberComplaintController;
         showComplaintsBarberScreen();
         validation();
     }
-    
-   
-    
+    //Properties of the view
     public void showComplaintsBarberScreen(){
         
         JPanel mainPanel = new JPanel();
@@ -54,7 +47,7 @@ public class BarberComplaintScreen extends Window{
         JLabel admpanel = new JLabel("Customers Complaints");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(barberComplaintController);
+        logOut.addActionListener(controller);
         logOut.setActionCommand("logout");
         
         
@@ -81,7 +74,7 @@ public class BarberComplaintScreen extends Window{
         
         JButton backButton = new JButton ("Back");
         
-        backButton.addActionListener(barberComplaintController);
+        backButton.addActionListener(controller);
         backButton.setActionCommand("back");
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
@@ -97,12 +90,13 @@ public class BarberComplaintScreen extends Window{
         
         
     }
+    
     private void validation(){
         this.validate();
         this.repaint();
-    }
+    }   
     
-    
+    //show the complaints in the view uses the controller and the model to gather information
     public void DisplayData(String [][] data){
         
         String [] columns = {"Custmer Name","Customer Email","Complaint"};
@@ -114,7 +108,4 @@ public class BarberComplaintScreen extends Window{
         mainPanel3.add(sp);
         
     }
-    
-    
-    
 }

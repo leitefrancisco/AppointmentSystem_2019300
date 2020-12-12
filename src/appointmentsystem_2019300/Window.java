@@ -22,13 +22,13 @@ import javax.swing.WindowConstants;
  * @author Francisco Leite
  */
 public class Window extends JFrame {
-
+    //Constructor of the window class will also carry the methods from JFrame, once this class extends JFrame as well
     public Window() throws HeadlessException {
         closeOnX();
         frameSize();
     }
     
-    
+    //method to end the application when closed in the "X" button, it will also do the logoff once it will clear the "current user" of the User class
     private void closeOnX(){
        this.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(new WindowAdapter()
@@ -39,7 +39,7 @@ public class Window extends JFrame {
             }
         });
    } 
-    
+    //Properties of the frame of all views
     private void frameSize(){
         this.setVisible(true);
         this.setSize(1280,720);

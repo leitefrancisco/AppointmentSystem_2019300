@@ -53,24 +53,37 @@ public class RegistrationController implements ActionListener {
                 JOptionPane.showMessageDialog(view, "Not a Valid Email ");
             }
             else if(model.emailExists(this.view.getEmail().trim())){
-                JOptionPane.showMessageDialog(view, "Email already exists! "); 
-            }
-            else if(model.writeUser()){
-                JOptionPane.showMessageDialog(view, "Welcome, you were registered!");
-                view.dispose();
-                new LoginController();
-                
+                JOptionPane.showMessageDialog(view, "Email already exists! ");
             }
             
+            
+            else {
+                
+                String type = String.valueOf(view.getUserType());
+                if (type.equals("c")){
+                    type = "COSTUMER";
+                }
+                else{
+                    type = "BARBER";
+                }
+                int a = JOptionPane.showConfirmDialog(null,"confirm Registration as a "+type+"?","=[",JOptionPane.YES_NO_OPTION);
+                if (a == 0)
+                {
+                    if(model.writeUser()){
+                        
+                        JOptionPane.showMessageDialog(view, "Welcome, you were registered!");
+                        view.dispose();
+                        new LoginController();
+                    }
+                }
+            }
         }
         
         else if(e.getActionCommand().equals("back")){
             view.dispose();
             new LoginController();
-       
+            
         }
-        
-        
     }
     
     

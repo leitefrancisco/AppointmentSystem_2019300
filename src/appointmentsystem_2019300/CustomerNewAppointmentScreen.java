@@ -1,34 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.text.DateFormatter;
-import jdk.nashorn.internal.objects.NativeArray;
 
 /**
  *
@@ -41,12 +31,12 @@ public class CustomerNewAppointmentScreen extends Window{
     JComboBox barberComboBox;
     DefaultListModel slotsModel;
     JComboBox locationComboBox;
-        
+     
+    //Constructor for the view  
     public CustomerNewAppointmentScreen (CustomerNewAppointmentController controller){
         this.controller = controller;
         showCustomerNewAppointmentScreen();
         validation();
-        
     }
     
     public void showCustomerNewAppointmentScreen(){
@@ -139,7 +129,7 @@ public class CustomerNewAppointmentScreen extends Window{
         listScroller.setPreferredSize(new Dimension(150, 80));
         mainPanel4.add(listScroller);
         
-        JButton confApp = new JButton ("Confirm Appointment");
+        JButton confApp = new JButton ("Book Appointment");
         confApp.addActionListener(controller);
         confApp.setActionCommand("confirm");
         mainPanel4.add(confApp);

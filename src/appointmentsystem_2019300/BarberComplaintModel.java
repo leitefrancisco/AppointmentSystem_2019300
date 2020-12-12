@@ -17,7 +17,7 @@ import javax.swing.JTable;
  * @author Francisco Leite
  */
 public class BarberComplaintModel {
-    
+    //if the barber has at least one complaint it will return the complaints to be added in the view.
     public String [][] getComplaints(int barberID){
         int amt = getAmtOfComplaints(barberID);
         if(amt >0){
@@ -58,7 +58,7 @@ public class BarberComplaintModel {
             return null;
         }
     }  
-    
+    //check how many complaints the barber has in the database.
     public int getAmtOfComplaints(int barberID){
         int comAmt = 0;
         

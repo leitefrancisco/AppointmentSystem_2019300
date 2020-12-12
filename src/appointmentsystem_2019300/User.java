@@ -9,6 +9,11 @@ package appointmentsystem_2019300;
  *
  * @author Francisco Leite
  */
+
+/*
+class to create a user object, has its attributes and is used several times in
+the application
+*/
 public class User {
     
     private String firstName;
@@ -17,9 +22,9 @@ public class User {
     private String password;
     private String passwordConf;
     private char userType;
-    private int userID;    
+    private int userID;
     private static User currentUser;
-   
+    
     public User (int id, String firstName, String lastName){
         this.userID = id;
         this.firstName = firstName;
@@ -73,19 +78,22 @@ public class User {
     public int getUserID() {
         return userID;
     }
-
+    
     public String getFullName() {
         return firstName + " " + lastName;
     }
     
-      public static User getCurrentUser(){
+    
+    //static method to get the user that was setted as the current user at the login
+    public static User getCurrentUser(){
         return currentUser;
     }
+    //get the information from the login and set the user as the current user of the application
     public static void setCurrentUser(User value){
         currentUser = value;
     }
-   
-    public static void Logoff(){
+    //set the current user as null in order to perform a proper logoff
+    public static void logoff(){
         currentUser = null;
     }
 }

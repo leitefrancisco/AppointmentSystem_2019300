@@ -7,6 +7,8 @@ package appointmentsystem_2019300;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,7 +28,7 @@ public class BarberLocationEditController implements ActionListener{
             showExistingData();
         }
     }
-     
+    
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -37,7 +39,7 @@ public class BarberLocationEditController implements ActionListener{
                     view.checkTue(),
                     view.checkWed(),
                     view.checkThu(),
-                    view.checkFri(), 
+                    view.checkFri(),
                     view.checkSat(),
                     view.checkSun(),
                     this.locationID
@@ -46,24 +48,32 @@ public class BarberLocationEditController implements ActionListener{
             if(model.isValid()==false){
                 JOptionPane.showMessageDialog(view, "Location can't be empty and you need to choose at least one day to work");
             }else{
-                model.saveLocation();    
-                view.dispose();
-                new BarberAdminController();
-            }    
-        }
-        if(e.getActionCommand().equals("back")){
-            if(onBack.equals("login")){
-                User.Logoff();
-                new LoginController();
+                try {
+                    model.saveLocation();
+                    view.dispose();
+                    new BarberAdminController();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(view, "Error: " + ex.getMessage());
+                }
                 
+            }
+        }
+        else if(e.getActionCommand().equals("back")){
+            if(onBack.equals("login")){
+                User.logoff();
+                new LoginController();
             }
             else if(onBack.equals("locations")){
                 new BarberLocationController();
             }
             view.dispose();
         }
+        else if(e.getActionCommand().equals("logout")){
+            LogoutController.logout(view);
+        }
+        
     }
-
+    
     private void showExistingData() {
         BarberLocationEditModel model = new BarberLocationEditModel();
         model.loadFromDb(this.locationID);

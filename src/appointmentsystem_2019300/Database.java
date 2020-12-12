@@ -1,8 +1,3 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package appointmentsystem_2019300;
 
 import java.sql.Connection;
@@ -11,10 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author Francisco Leite
- */
+//Class to create the connection with the data base
 public class Database {
     
     String dbServer = "jdbc:mysql://apontejaj.com:3306/Francisco_2019300?useSSL=false";
@@ -24,6 +16,7 @@ public class Database {
     Statement stmt;
     ResultSet rs;
     
+    //Execute queries
     public ResultSet executeQuery(String query) throws SQLException{
         // Get a connection to the database
         conn = DriverManager.getConnection(dbServer, dbUser, dpPassword);
@@ -34,6 +27,7 @@ public class Database {
         
         return rs;
     }
+    //execute comands to update or insert data into tables for example
     public boolean execute(String query) throws SQLException{
         // Get a connection to the database
         conn = DriverManager.getConnection(dbServer, dbUser, dpPassword);
@@ -44,9 +38,9 @@ public class Database {
         
         return result;
     }
-    
+    //Close the result set, statement and the connection
     public void close() throws SQLException{
-        // Close the result set, statement and the connection
+        
             
         if(stmt != null){
             stmt.close();

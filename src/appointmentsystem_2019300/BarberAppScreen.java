@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
@@ -20,15 +15,13 @@ class BarberAppScreen extends Window {
     BarberAppController controller;
     JTable complaintTable;
     JPanel mainPanel3;
-    
+    //constructor for the Screen
     public BarberAppScreen(BarberAppController barberAppController){
         this.controller = barberAppController;
         showComplaintsBarberScreen();
         validation();
     }
-    
-   
-    
+    //view properties
     public void showComplaintsBarberScreen(){
         
         JPanel mainPanel = new JPanel();
@@ -83,24 +76,17 @@ class BarberAppScreen extends Window {
  
         
     }
+   
     private void validation(){
         this.validate();
         this.repaint();
     }
-    
-    
+    //Creates the table and adds to the panel of the view
     public void DisplayData(String [][] data){
         
-        String [] columns = {"Custmer Name","Customer Email","Appointment Date"};
-        
-        
+        String [] columns = {"Custmer Name","Customer Email","Appointment Date","Time","Status"};
         JTable complaintsTable= new JTable(data, columns);
-        
         JScrollPane sp = new JScrollPane(complaintsTable);
-        mainPanel3.add(sp);
-        
+        mainPanel3.add(sp);        
     }
-    
-    
-    
 }
