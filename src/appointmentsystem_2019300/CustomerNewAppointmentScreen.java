@@ -44,32 +44,9 @@ public class CustomerNewAppointmentScreen extends Window{
         
     public CustomerNewAppointmentScreen (CustomerNewAppointmentController controller){
         this.controller = controller;
-        frameSetter();
         showCustomerNewAppointmentScreen();
         validation();
         
-    }
-    
-    private void frameSetter(){
-        
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        BorderLayout frameLayout = new BorderLayout();
-        this.setLayout(frameLayout);
-        //head
-        JPanel topPanel = new JPanel();
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(topPanel, BorderLayout.PAGE_START);
-        JLabel barberShop = new JLabel("Barber Shop") ;
-        topPanel.add(barberShop);
     }
     
     public void showCustomerNewAppointmentScreen(){

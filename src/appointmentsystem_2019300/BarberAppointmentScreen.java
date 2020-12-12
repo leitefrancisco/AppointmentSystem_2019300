@@ -10,7 +10,6 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,31 +21,8 @@ public class BarberAppointmentScreen extends Window {
     
     public BarberAppointmentScreen(LoginController controller){
         
-        frameSetter();
         showAppointmentScreenBarber();
         validation();
-    }
-    
-    private void frameSetter(){
-        
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        BorderLayout frameLayout = new BorderLayout();
-        this.setLayout(frameLayout);
-        //head
-        JPanel topPanel = new JPanel();
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(topPanel, BorderLayout.PAGE_START);
-        JLabel barberShop = new JLabel("Barber Shop") ;
-        topPanel.add(barberShop);
     }
     
     public void showAppointmentScreenBarber(){

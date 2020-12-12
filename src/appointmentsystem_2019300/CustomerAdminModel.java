@@ -32,7 +32,7 @@ public class CustomerAdminModel {
                         + " on a.barberID = b.userID"
                         + " inner join t_location l"
                         + " on a.locationID = l.locationID"
-                        + " where customerID="+ User.getCurrentUser().getUserID() + " and status in (0, 1) and appDayTime >= now()";
+                        + " where customerID="+ User.getCurrentUser().getUserID() + " and status in (0, 1) ";//and appDayTime >= now()"
 
             ResultSet rs = db.executeQuery(query);
             

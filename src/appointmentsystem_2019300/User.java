@@ -17,19 +17,9 @@ public class User {
     private String password;
     private String passwordConf;
     private char userType;
-    private int userID;
-    
+    private int userID;    
     private static User currentUser;
-    public static User getCurrentUser(){
-        return currentUser;
-    }
-    public static void setCurrentUser(User value){
-        currentUser = value;
-    }
    
-    public static void Logoff(){
-        currentUser = null;
-    }
     public User (int id, String firstName, String lastName){
         this.userID = id;
         this.firstName = firstName;
@@ -39,7 +29,6 @@ public class User {
         this.password = password;
         this.email = email;
     }
-    
     
     public User(String firstName, String lastName, String email, String password, char userType){
         this(email, password);
@@ -87,5 +76,16 @@ public class User {
 
     public String getFullName() {
         return firstName + " " + lastName;
+    }
+    
+      public static User getCurrentUser(){
+        return currentUser;
+    }
+    public static void setCurrentUser(User value){
+        currentUser = value;
+    }
+   
+    public static void Logoff(){
+        currentUser = null;
     }
 }

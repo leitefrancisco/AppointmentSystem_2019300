@@ -1,8 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
@@ -10,24 +10,19 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-/**
- *
- * @author Francisco Leite
- */
-public class BarberComplaintScreen extends Window{
-    BarberComplaintController barberComplaintController;
+
+class BarberAppScreen extends Window {
+    BarberAppController controller;
     JTable complaintTable;
     JPanel mainPanel3;
     
-    public BarberComplaintScreen(BarberComplaintController barberComplaintController){
-        this.barberComplaintController = barberComplaintController;
+    public BarberAppScreen(BarberAppController barberAppController){
+        this.controller = barberAppController;
         showComplaintsBarberScreen();
         validation();
     }
@@ -54,7 +49,7 @@ public class BarberComplaintScreen extends Window{
         JLabel admpanel = new JLabel("Customers Complaints");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
-        logOut.addActionListener(barberComplaintController);
+        logOut.addActionListener(controller);
         logOut.setActionCommand("logout");
         
         
@@ -81,20 +76,11 @@ public class BarberComplaintScreen extends Window{
         
         JButton backButton = new JButton ("Back");
         
-        backButton.addActionListener(barberComplaintController);
+        backButton.addActionListener(controller);
         backButton.setActionCommand("back");
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
-        
-        
-       
-       
-        
-        
-        
-        
-        
-        
+ 
         
     }
     private void validation(){
@@ -105,7 +91,7 @@ public class BarberComplaintScreen extends Window{
     
     public void DisplayData(String [][] data){
         
-        String [] columns = {"Custmer Name","Customer Email","Complaint"};
+        String [] columns = {"Custmer Name","Customer Email","Appointment Date"};
         
         
         JTable complaintsTable= new JTable(data, columns);

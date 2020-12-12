@@ -5,11 +5,16 @@
  */
 package appointmentsystem_2019300;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.HeadlessException;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -20,6 +25,7 @@ public class Window extends JFrame {
 
     public Window() throws HeadlessException {
         closeOnX();
+        frameSize();
     }
     
     
@@ -29,16 +35,27 @@ public class Window extends JFrame {
         {
             public void windowClosing (WindowEvent e)
             {
-                //caixa de dialogo retorna um inteiro
-//                int a = JOptionPane.showConfirmDialog(null,"Are you sure you wanna exit?","=[",JOptionPane.YES_NO_OPTION);
-                 
-                //sim = 0, nao = 1
-//                if (a == 0)
-//                {
                     System.exit(0);
-//                }
-                 
             }
         });
    } 
+    
+    private void frameSize(){
+        this.setVisible(true);
+        this.setSize(1280,720);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setTitle("Barbershop");
+        BorderLayout frameLayout = new BorderLayout();
+        this.setLayout(frameLayout);
+        //head
+        JPanel topPanel = new JPanel();
+        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.add(topPanel, BorderLayout.PAGE_START);
+        JLabel barberShop = new JLabel("Barber Shop") ;
+        topPanel.add(barberShop); 
+    }
+    
+    
+            
 }

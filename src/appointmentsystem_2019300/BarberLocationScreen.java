@@ -7,13 +7,14 @@ package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -25,32 +26,10 @@ public class BarberLocationScreen extends Window {
     JPanel mainPanel4;
     public BarberLocationScreen(BarberLocationController controller){
         this.controller = controller;
-        frameSetter();
         showBarberLocationsScreen();
         validation();
     }
     
-    private void frameSetter(){
-        
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        BorderLayout frameLayout = new BorderLayout();
-        this.setLayout(frameLayout);
-        //head
-        JPanel topPanel = new JPanel();
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(topPanel, BorderLayout.PAGE_START);
-        JLabel barberShop = new JLabel("Barber Shop") ;
-        topPanel.add(barberShop);
-    }
     
     public void showBarberLocationsScreen(){
         
@@ -72,6 +51,8 @@ public class BarberLocationScreen extends Window {
         JLabel admpanel = new JLabel("Locations");
         tLeft.add(admpanel);
         JButton logOut = new JButton("Log Out");
+        logOut.addActionListener(controller);
+        logOut.setActionCommand("logout");
         tRight.add(logOut);
         screenName.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         
@@ -98,19 +79,14 @@ public class BarberLocationScreen extends Window {
         
         JPanel bottomButtons = new JPanel();
         JButton backButton = new JButton ("Back");
+        backButton.addActionListener(controller);
+        backButton.setActionCommand("back");
         bottomButtons.add(backButton);
         mainPanel3.add(bottomButtons, BorderLayout.PAGE_END);
         
         mainPanel4 = new JPanel();
-        mainPanel3.add(mainPanel4);
-        
-        
-        
-        
-        
-        
-
-        
+        JScrollPane jsp = new JScrollPane(mainPanel4);
+        mainPanel3.add(jsp);
         
     }
     private void validation(){
@@ -119,6 +95,9 @@ public class BarberLocationScreen extends Window {
     }
 
     void showLocations(BarberLocation[] locations) {
+        mainPanel4.setLayout(new GridBagLayout());
+        GridBagConstraints gBcon = new GridBagConstraints();
+        gBcon.gridwidth = GridBagConstraints.REMAINDER;
         for(int i=0; i< locations.length; i++){
             BarberLocation loc = locations[i];
             
@@ -126,7 +105,7 @@ public class BarberLocationScreen extends Window {
             JButton btn = new JButton("Edit");
             btn.addActionListener(controller);
             btn.setActionCommand("edit:"+loc.getLocationId());
-            mainPanel4.add(btn);
+            mainPanel4.add(btn, gBcon);
         }
     }
     

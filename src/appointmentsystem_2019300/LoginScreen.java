@@ -19,28 +19,13 @@ public class LoginScreen extends Window {
     
     public LoginScreen(LoginController controller){
         this.loginScreenController =  controller;
-        frameSetter();
+       
         showLoginScreen();
         
         validation();
     }
     
-    private void frameSetter(){
-        
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        BorderLayout frameLayout = new BorderLayout();
-        this.setLayout(frameLayout);
-        //head
-        JPanel topPanel = new JPanel();
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(topPanel, BorderLayout.PAGE_START);
-        JLabel barberShop = new JLabel("Barber Shop") ;
-        topPanel.add(barberShop);   
-    }
+   
     
     private void validation(){
         this.validate();

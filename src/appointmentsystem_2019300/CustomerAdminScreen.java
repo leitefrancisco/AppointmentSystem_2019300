@@ -11,11 +11,10 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -24,34 +23,12 @@ import javax.swing.JTable;
 public class CustomerAdminScreen extends Window{
     CustomerAdminController controller;
      JPanel mainLeft;
+     JPanel mainPanel3;
     public CustomerAdminScreen(CustomerAdminController controller){
         this.controller = controller;
-        frameSetter();
         showCostumerAdminScreen();
         validation();
     }
-    
-    private void frameSetter(){
-        
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        this.setVisible(true);
-        this.setSize(800,500);
-        this.setLocationRelativeTo(null);
-        this.setResizable(false);
-        this.setTitle("Barbershop");
-        BorderLayout frameLayout = new BorderLayout();
-        this.setLayout(frameLayout);
-        //head
-        JPanel topPanel = new JPanel();
-        topPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.add(topPanel, BorderLayout.PAGE_START);
-        JLabel barberShop = new JLabel("Barber Shop") ;
-        topPanel.add(barberShop);
-}
     
     public void showCostumerAdminScreen(){
         
@@ -103,33 +80,20 @@ public class CustomerAdminScreen extends Window{
         topPanelButtons.add(makeComplaints);
         
         
-        JPanel mainPanel3 = new JPanel();
-        GridLayout mp3Layout = new GridLayout(1,2);
-        mainPanel3.setLayout(mp3Layout);
-        mainPanel2.add(mainPanel3);
+        mainPanel3 = new JPanel();
+        JScrollPane jsp = new JScrollPane(mainPanel3);
+        jsp.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//        GridLayout mp3Layout = new GridLayout(1,2);
+//        mainPanel3.setLayout(mp3Layout);
+        mainPanel2.add(jsp);
         
-         mainLeft = new JPanel();
+//        mainLeft = new JPanel();
          
-        mainPanel3.add(mainLeft);
+//        mainPanel3.add(mainLeft);
         
-        JPanel mainRight = new JPanel();
-        mainRight.setBackground(Color.blue);
-        mainPanel3.add(mainRight);
-        
-       
-         
-        
-        
-        
-     
-        
-        
-        
-        
-        
-        
- 
-        
+//        JPanel mainRight = new JPanel();
+//        mainRight.setBackground(Color.blue);
+//        mainPanel3.add(mainRight);
         
     }
     private void validation(){
@@ -139,19 +103,28 @@ public class CustomerAdminScreen extends Window{
 
     void showCurrentAppointments(Appointment[] appointments) {
         
-        mainLeft.setLayout(new GridBagLayout());
+        mainPanel3.setLayout(new GridBagLayout());
         GridBagConstraints gBcon = new GridBagConstraints();
         gBcon.gridwidth = GridBagConstraints.REMAINDER; 
         
-        mainLeft.removeAll();
+        mainPanel3.removeAll();
         for(int i =0 ; i< appointments.length; i++){
+            
             Appointment app = appointments[i];
-            JLabel lbl = new JLabel(app.getDate().toString() + " " + app.getLocation() + " " + app.getBarber());
-            mainLeft.add(lbl, gBcon);
+            String status = null;
+            
+            if(app.getStatus() == 0){
+                status = "Pending";
+            }
+            else if (app.getStatus()==1){
+                status = "Confirmed";
+            }
+            JLabel lbl = new JLabel(app.getDate().toString() + " " + app.getLocation() + " " + app.getBarber()+" "+ status);
+            mainPanel3.add(lbl);
             JButton btn = new JButton("Cancel");
             btn.addActionListener(controller);
             btn.setActionCommand("cancelApp:"+app.getAppoitmentId()); // cancelApp:1
-            mainLeft.add(btn, gBcon);
+            mainPanel3.add(btn, gBcon);
             
         }
         

@@ -31,10 +31,9 @@ public class LoginController implements ActionListener {
                 if (type == 'c'){
                     loginScreen.dispose();
                     new CustomerAdminController();
+                    JOptionPane.showMessageDialog(null, "If the appoitment you had booked does not appear here, it was canceled or refused.\nFeel free to book another one!");
                 }
                 else{
-                    
-                    
                     BarberAdminModel bmodel = new BarberAdminModel();
                     
                     if(!bmodel.checkBarberhasLocation()){

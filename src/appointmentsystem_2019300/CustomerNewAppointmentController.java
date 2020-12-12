@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -86,6 +87,9 @@ public class CustomerNewAppointmentController implements ActionListener{
                         view.getBarberId(),
                         User.getCurrentUser().getUserID(),
                         view.getLocationId() );
+                        JOptionPane.showMessageDialog(view, "Booked! wait for the Barber to Accept your appoint,\n check the status at Welcome Screen");
+                        view.dispose();
+                        new CustomerAdminController();
             } catch (ParseException ex) {
                 Logger.getLogger(CustomerNewAppointmentController.class.getName()).log(Level.SEVERE, null, ex);
             }

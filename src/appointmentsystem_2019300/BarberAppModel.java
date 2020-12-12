@@ -5,21 +5,18 @@
  */
 package appointmentsystem_2019300;
 
-import com.mysql.cj.protocol.Resultset;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 /**
  *
  * @author Francisco Leite
  */
-public class BarberComplaintModel {
+class BarberAppModel {
     
-    public String [][] getComplaints(int barberID){
-        int amt = getAmtOfComplaints(barberID);
+    
+    public String [][] getApps(int barberID){
+        int amt = getAmtOfApps(barberID);
         if(amt >0){
         
         String [][] complaints = new String [amt+1][3];
@@ -59,7 +56,7 @@ public class BarberComplaintModel {
         }
     }  
     
-    public int getAmtOfComplaints(int barberID){
+    public int getAmtOfApps(int barberID){
         int comAmt = 0;
         
         try{
@@ -89,5 +86,27 @@ public class BarberComplaintModel {
         }
         return comAmt;
     }  
-  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
