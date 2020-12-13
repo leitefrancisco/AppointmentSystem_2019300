@@ -1,8 +1,3 @@
-/*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
-*/
 package appointmentsystem_2019300;
 
 import java.awt.BorderLayout;
@@ -23,20 +18,20 @@ public class BarberLocationEditScreen extends Window {
     
     BarberLocationEditController controller;
     private JTextField locationTextField;
-    private   JCheckBox monChkBox;
-    private   JCheckBox tueChkBox ;
-    private   JCheckBox wedChkBox ;
-    private   JCheckBox thuChkBox ;
+    private JCheckBox monChkBox;
+    private JCheckBox tueChkBox;
+    private JCheckBox wedChkBox;
+    private JCheckBox thuChkBox;
     private JCheckBox friChkBox;
-    private  JCheckBox satChkBox;
+    private JCheckBox satChkBox;
     private JCheckBox sunChkBox;
-    
+    //Constructor of the view witht a controller
     public BarberLocationEditScreen(BarberLocationEditController barberFirstLocationController){
         this.controller = barberFirstLocationController;
         showBarberFirstLocationScreen();
         validation();
     }
-    
+    //properties of the view
     public void showBarberFirstLocationScreen(){
         
         JPanel mainPanel = new JPanel();
@@ -132,8 +127,6 @@ public class BarberLocationEditScreen extends Window {
         
         npan2.add(npan3);
  
-        
-        
         JPanel bottomButtons = new JPanel();
         JButton backButton = new JButton ("Back");
         backButton.addActionListener(controller);
@@ -158,23 +151,28 @@ public class BarberLocationEditScreen extends Window {
     public boolean checkMon(){
         return monChkBox.isSelected();
     }
+    
     public boolean checkTue(){
         return tueChkBox.isSelected();
     }
+    
     public boolean checkWed(){
         return wedChkBox.isSelected();
     }
+    
     public boolean checkThu(){
         return thuChkBox.isSelected();
     }
+    
     public boolean checkFri(){
         return friChkBox.isSelected();
     }
+    
     public boolean checkSat(){
         return satChkBox.isSelected();
     }
-    public boolean checkSun(){
-     
+    
+    public boolean checkSun(){     
         return sunChkBox.isSelected();
         
     }
@@ -189,8 +187,4 @@ public class BarberLocationEditScreen extends Window {
         satChkBox.setSelected(model.isWorksSat());
         sunChkBox.setSelected(model.isWorksSun());
     }
-    
-    
-    
-    
 }

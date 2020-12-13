@@ -15,14 +15,10 @@ import javax.swing.JOptionPane;
  */
 public class RegistrationController implements ActionListener {
     
-    //RegistrationScreenModel registrationScreenModel;
     RegistrationScreen view;
-    
-    
     
     public RegistrationController (){
         this.view = new RegistrationScreen(this);
-        // this.registrationScreenModel = new RegistrationScreenModel();
     }
     
     
@@ -40,7 +36,7 @@ public class RegistrationController implements ActionListener {
                     
             );
             
-            
+            //Validatiions for the reistration 
             if(!view.getPassword().trim().equals(view.getPasswordConfirmation().trim())){
                 JOptionPane.showMessageDialog(view, "Password and Password Confirmation needs to be the same!");
             }

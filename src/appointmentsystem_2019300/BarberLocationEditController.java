@@ -7,14 +7,13 @@ package appointmentsystem_2019300;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Francisco Leite
  */
+
 public class BarberLocationEditController implements ActionListener{
     
     BarberLocationEditScreen view;
@@ -32,6 +31,7 @@ public class BarberLocationEditController implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        //checks the location text and the days worked in the place 
         if(e.getActionCommand().equals("confLocation")){
             BarberLocationEditModel model = new BarberLocationEditModel(
                     view.getBarberLocation(),
@@ -73,7 +73,7 @@ public class BarberLocationEditController implements ActionListener{
         }
         
     }
-    
+    //show the location currently being edit
     private void showExistingData() {
         BarberLocationEditModel model = new BarberLocationEditModel();
         model.loadFromDb(this.locationID);
