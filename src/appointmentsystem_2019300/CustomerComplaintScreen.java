@@ -113,4 +113,7 @@ public class CustomerComplaintScreen extends Window{
     String getComplaint() {
         return complaint.getText();
     }
+    int getBarberId() {
+        return ((ComboBoxItem)barberCB.getSelectedItem()).getId();
+    }
 }

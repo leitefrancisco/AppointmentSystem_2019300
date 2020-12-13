@@ -5,12 +5,8 @@
  */
 package appointmentsystem_2019300;
 
-import com.mysql.cj.protocol.Resultset;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 
 /**
  *
@@ -22,7 +18,7 @@ public class BarberComplaintModel {
         int amt = getAmtOfComplaints(barberID);
         if(amt >0){
         
-        String [][] complaints = new String [amt+1][3];
+        String [][] complaints = new String [amt][3];
         
         try{
            Database db = new Database();

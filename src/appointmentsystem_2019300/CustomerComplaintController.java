@@ -34,17 +34,21 @@ class CustomerComplaintController implements ActionListener {
         }
         //get the information of the user and uses the model to create a new complaint in the data base.
         else if(e.getActionCommand().equals("submit")){
-            CustomerComplaintModel model = new CustomerComplaintModel();
-            if(model.writeComplaint(view.getBarberID(),User.getCurrentUser().getUserID(),
-                    view.getComplaint(),User.getCurrentUser().getFullName(), 
-                    User.getCurrentUser().getEmail())){
-                JOptionPane.showMessageDialog(view, "Complaint Registered, the barber will contact you via email");
-                view.dispose();
-                new CustomerAdminController();
+            
+            if(view.getBarberId()!= -1){
+                
+                CustomerComplaintModel model = new CustomerComplaintModel();
+                if(model.writeComplaint(view.getBarberID(),User.getCurrentUser().getUserID(),
+                        view.getComplaint(),User.getCurrentUser().getFullName(),
+                        User.getCurrentUser().getEmail())){
+                    JOptionPane.showMessageDialog(view, "Complaint Registered, the barber will contact you via email");
+                    view.dispose();
+                    new CustomerAdminController();
+                }
+                else{
+                    JOptionPane.showMessageDialog(view, "something went wrong, that's on us ... Try again later.");
+                }
             }
-            else{
-                JOptionPane.showMessageDialog(view, "something went wrong, that's on us ... Try again later.");
-            } 
         } 
     }
 }

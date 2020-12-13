@@ -21,6 +21,7 @@ public class CustomerNewAppointmentModel {
     
     public User[] getBarbers() {
         ArrayList<User> barbers = new  ArrayList<>();
+        //first item of the list will be "select barber" and will trigger no action
         barbers.add(new User(-1, "Select", "Barber"));
         try{
             Database db = new Database();
